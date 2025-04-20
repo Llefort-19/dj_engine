@@ -1,0 +1,111 @@
+[
+    {
+      "id": "IC0",
+      "island_id": "C",
+      "actions": [],
+      "has_specimen": false,
+      "golden_ribbon_vp": null,
+      "next": ["IC1"]
+    },
+    {
+      "id": "IC1",
+      "island_id": "C",
+      "actions": [],
+      "has_specimen": true,
+      "golden_ribbon_vp": null,
+      "next": ["IC2", "IC4"]
+    },
+    {
+      "id": "IC2",
+      "island_id": "C",
+      "actions": [
+        { "type": "GAIN_VP", "value": 3 },
+        { "type": "GAIN_TEMP_KNOWLEDGE", "value": 1 }
+      ],
+      "has_specimen": false,
+      "golden_ribbon_vp": null,
+      "next": ["IC3"]
+    },
+    {
+      "id": "IC3",
+      "island_id": "C",
+      "actions": [
+        { "type": "CAMP" }
+      ],
+      "has_specimen": false,
+      "golden_ribbon_vp": null,
+      "next": ["IC4"]
+    },
+    {
+      "id": "IC4",
+      "island_id": "C",
+      "actions": [
+        { "type": "CORRESPONDENCE", "value": 2 },
+        { "type": "GAIN_VP", "value": 3 }
+      ],
+      "has_specimen": false,
+      "golden_ribbon_vp": null,
+      "next": ["IC5"]
+    },
+    {
+      "id": "IC5",
+      "island_id": "C",
+      "actions": [],
+      "has_specimen": true,
+      "golden_ribbon_vp": null,
+      "next": ["IC6"]
+    },
+    {
+      "id": "IC6",
+      "island_id": "C",
+      "actions": [
+        { "type": "GAIN_VP", "value": 5 },
+        { "type": "GAIN_OBJECTIVE" }
+      ],
+      "has_specimen": false,
+      "golden_ribbon_vp": null,
+      "next": ["IC7"]
+    },
+    {
+      "id": "IC7",
+      "island_id": "C",
+      "actions": [
+        { "type": "GAIN_VP", "value": 3 },
+        { "type": "ADVANCE_THEORY", "value": 2 }
+      ],
+      "has_specimen": false,
+      "golden_ribbon_vp": 4,
+      "next": ["IC8"]
+    },
+    {
+      "id": "IC8",
+      "island_id": "C",
+      "actions": [
+        { "type": "GAIN_VP", "value": 6 }
+      ],
+      "has_specimen": false,
+      "golden_ribbon_vp": null,
+      "next": ["IC9"]
+    },
+    {
+      "id": "IC9",
+      "island_id": "C",
+      "actions": [
+        { "type": "GAIN_VP", "value": 8 }
+      ],
+      "has_specimen": false,
+      "golden_ribbon_vp": null,
+      "next": ["IC10"]
+    },
+    {
+      "id": "IC10",
+      "island_id": "C",
+      "actions": [
+        { "type": "GAIN_VP", "value": 8 },
+        { "type": "END_OF_ISLAND_BONUS", "value": 3 }
+      ],
+      "has_specimen": false,
+      "golden_ribbon_vp": null,
+      "next": []
+    }
+  ]

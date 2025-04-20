@@ -1,0 +1,121 @@
+[
+    {
+      "card_id": 1,
+      "starting_seal_color": "BLUE",
+      "activation_requirement": { "BLUE": 2, "YELLOW": 2, "GREEN": 1 },
+      "achieved_actions": [ { "type": "GAIN_COINS", "value": 8 } ]
+    },
+    {
+      "card_id": 2,
+      "starting_seal_color": "GREEN",
+      "activation_requirement": { "GREEN": 4, "RED": 1},
+      "achieved_actions": [
+        { "type": "EXPLORE", "value": 2 },
+        { "type": "EXPLORE", "value": 2 }
+      ]
+    },
+    {
+      "card_id": 3,
+      "starting_seal_color": "RED",
+      "activation_requirement": { "YELLOW": 1, "BLUE": 1, "RED": 3 },
+      "achieved_actions": [ { "type": "ADVANCE_THEORY", "value": 5 } ]
+    },
+    {
+      "card_id": 4,
+      "starting_seal_color": "RED",
+      "activation_requirement": { "GREEN": 2, "YELLOW": 1, "RED": 2 },
+      "achieved_actions": [ { "type": "PLACE_EXPLORER" } ]
+    },
+    {
+      "card_id": 5,
+      "starting_seal_color": "BLUE",
+      "activation_requirement": { "BLUE": 4, "YELLOW": 1 },
+      "_comment": "The standard Unlock Lens action costs coins based on the target location; this bypasses that.",
+      "achieved_actions": [ { "type": "UNLOCK_LENS", "cost_modifier": "FREE" } ]
+    },
+    {
+      "card_id": 6,
+      "starting_seal_color": "YELLOW",
+      "activation_requirement": { "YELLOW": 4, "BLUE": 1 },
+      "_comment": "Distributed Correspondence",
+      "achieved_actions": [ { "type": "CORRESPONDENCE_DISTRIBUTED", "value": 4 } ]
+    },
+    {
+      "card_id": 7,
+      "starting_seal_color": "YELLOW",
+      "activation_requirement": { "RED": 2, "BLUE": 1, "YELLOW": 2 },
+      "_comment": "Corresponds to 'Copy Crew Card'",
+      "achieved_actions": [ { "type": "COPY_CREW_CARD" } ]
+    },
+     {
+      "card_id": 8,
+      "starting_seal_color": "BLUE",
+      "activation_requirement": { "GREEN": 1, "RED": 1, "BLUE": 3 },
+      "_comment": "Move up to the HMS Beagle",
+      "achieved_actions": [ { "type": "MOVE_TO_BEAGLE" } ]
+    },
+    {
+      "card_id": 9,
+      "starting_seal_color": "RED",
+      "activation_requirement": { "RED": 3, "YELLOW": 2 },
+      "_comment": "Perform Locked Action",
+      "achieved_actions": [ { "type": "PERFORM_LOCKED_ACTION" } ]
+    },
+     {
+      "card_id": 10,
+      "starting_seal_color": "YELLOW",
+      "activation_requirement": { "YELLOW": 3, "GREEN": 2 },
+      "_comment": "Establish Any Campsite",
+      "achieved_actions": [ { "type": "ESTABLISH_ANY_CAMPSITE" } ]
+    },
+  
+    {
+      "card_id": 11,
+      "starting_seal_color": "RED",
+      "activation_requirement": { "GREEN": 1, "RED": 4 },
+      "_comment": "Corresponds to 'Gain Special Wax Seal (purple)' from p18, but explicitly free",
+      "achieved_actions": [ { "type": "GAIN_SEAL_SPECIAL", "cost_modifier": "FREE" } ]
+    },
+    {
+      "card_id": 12,
+      "starting_seal_color": "GREEN",
+      "activation_requirement": { "GREEN": 3, "BLUE": 2 },
+      "_comment": "Research Any Specimen",
+      "achieved_actions": [ { "type": "RESEARCH_ANY_SPECIMEN" } ]
+    },
+     {
+      "card_id": 13,
+      "starting_seal_color": "YELLOW",
+      "activation_requirement": { "BLUE": 1, "GREEN": 1, "YELLOW": 3 },
+      "achieved_actions": [
+        { "type": "GAIN_TEMP_KNOWLEDGE", "value": 2 },
+        { "type": "GAIN_VP", "value": 3 }
+      ]
+    },
+    {
+      "card_id": 14,
+      "starting_seal_color": "GREEN",
+      "activation_requirement": { "GREEN": 2, "RED": 1, "BLUE": 2 },
+      "achieved_actions": [ { "type": "GAIN_VP", "value": 8 } ]
+    },
+    {
+      "card_id": 15,
+      "starting_seal_color": "GREEN",
+      "activation_requirement": { "YELLOW": 1, "GREEN": 3, "RED": 1 },
+      "_comment": "Interpretation: Gain an Objective tile into reserve, then immediately fulfill any one objective (maybe the one just gained) automatically.",
+      "achieved_actions": [
+        { "type": "GAIN_OBJECTIVE" },
+        { "type": "AUTO_FULFILL_OBJECTIVE" }
+      ]
+    },
+    {
+      "card_id": 16,
+      "starting_seal_color": "BLUE",
+      "activation_requirement": { "BLUE": 3, "RED": 2 },
+      "achieved_actions": [
+          { "type": "ADVANCE_THEORY", "value": 2 },
+          { "type": "GAIN_TEMP_KNOWLEDGE", "value": 1 },
+          { "type": "GAIN_COINS", "value": 3 }
+      ]
+    }
+  ]

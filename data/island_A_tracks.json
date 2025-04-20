@@ -1,0 +1,245 @@
+[{
+    "id": "IA0",
+    "island_id": "A",
+    "actions": [],
+    "has_specimen": false,
+    "golden_ribbon_vp": null,
+    "next": ["IA1"]
+  },
+  {
+    "id": "IA1",
+    "island_id": "A",
+    "actions": [
+      { "type": "GAIN_COINS", "value": 4 }
+    ],
+    "has_specimen": false,
+    "golden_ribbon_vp": null,
+    "next": ["IA2"]
+  },
+  {
+    "id": "IA2",
+    "island_id": "A",
+    "actions": [],
+    "has_specimen": true,
+    "golden_ribbon_vp": null,
+    "next": ["IA3"]
+  },
+  {
+    "id": "IA3",
+    "island_id": "A",
+    "actions": [
+      { "type": "GAIN_TEMP_KNOWLEDGE", "value": 1 }
+    ],
+    "has_specimen": false,
+    "golden_ribbon_vp": null,
+    "next": ["IA4"]
+  },
+  {
+    "id": "IA4",
+    "island_id": "A",
+    "actions": [
+      { "type": "CAMP" }
+    ],
+    "has_specimen": false,
+    "golden_ribbon_vp": 1,
+    "next": ["IA5", "IA8"]
+  },
+  {
+    "id": "IA5",
+    "island_id": "A",
+    "actions": [],
+    "has_specimen": true,
+    "golden_ribbon_vp": null,
+    "next": ["IA6"]
+  },
+  {
+    "id": "IA6",
+    "island_id": "A",
+    "actions": [
+      { "type": "GAIN_OBJECTIVE" }
+    ],
+    "has_specimen": false,
+    "golden_ribbon_vp": null,
+    "next": ["IA7"]
+  },
+  {
+    "id": "IA7",
+    "island_id": "A",
+    "actions": [
+      { "type": "CAMP" }
+    ],
+    "has_specimen": false,
+    "golden_ribbon_vp": null,
+    "next": ["IA8"]
+  },
+  {
+    "id": "IA8",
+    "island_id": "A",
+    "actions": [
+      { "type": "GAIN_COINS", "value": 2 }
+    ],
+    "has_specimen": false,
+    "golden_ribbon_vp": null,
+    "next": ["IA9"]
+  },
+  {
+    "id": "IA9",
+    "island_id": "A",
+    "actions": [],
+    "has_specimen": true,
+    "golden_ribbon_vp": 2,
+    "next": ["IA10"]
+  },
+  {
+    "id": "IA10",
+    "island_id": "A",
+    "actions": [
+      { "type": "GAIN_OBJECTIVE" },
+      { "type": "ADVANCE_THEORY", "value": 1 }
+    ],
+    "has_specimen": false,
+    "golden_ribbon_vp": null,
+    "next": ["IA11"]
+  },
+  {
+    "id": "IA11",
+    "island_id": "A",
+    "actions": [
+      { "type": "GAIN_COINS", "value": 3 }
+    ],
+    "has_specimen": false,
+    "golden_ribbon_vp": null,
+    "next": ["IA12", "IA13"]
+  },
+  {
+    "id": "IA12",
+    "island_id": "A",
+    "actions": [],
+    "has_specimen": true,
+    "golden_ribbon_vp": null,
+    "next": ["IA15"]
+  },
+  {
+    "id": "IA13",
+    "island_id": "A",
+    "actions": [
+      { "type": "GAIN_COINS", "value": 5 }
+    ],
+    "has_specimen": false,
+    "golden_ribbon_vp": null,
+    "next": ["IA14"]
+  },
+  {
+    "id": "IA14",
+    "island_id": "A",
+    "actions": [
+      { "type": "CAMP" }
+    ],
+    "has_specimen": false,
+    "golden_ribbon_vp": null,
+    "next": ["IA15"]
+  },
+  {
+    "id": "IA15",
+    "island_id": "A",
+    "actions": [
+      { "type": "GAIN_VP", "value": 3 }
+    ],
+    "has_specimen": false,
+    "golden_ribbon_vp": null,
+    "next": ["IA16"]
+  },
+  {
+    "id": "IA16",
+    "island_id": "A",
+    "actions": [
+      { "type": "GAIN_VP", "value": 2 },
+      { "type": "GAIN_TEMP_KNOWLEDGE", "value": 1 }
+    ],
+    "has_specimen": false,
+    "golden_ribbon_vp": 3,
+    "next": ["IA17"]
+  },
+  {
+    "id": "IA17",
+    "island_id": "A",
+    "actions": [
+      { "type": "GAIN_VP", "value": 3 }
+    ],
+    "has_specimen": false,
+    "golden_ribbon_vp": null,
+    "next": ["IA18"]
+  },
+  {
+    "id": "IA18",
+    "island_id": "A",
+    "actions": [
+      { "type": "ADVANCE_THEORY", "value": 2 }
+    ],
+    "has_specimen": false,
+    "golden_ribbon_vp": null,
+    "next": ["IA19"]
+  },
+  {
+    "id": "IA19",
+    "island_id": "A",
+    "actions": [
+      { "type": "GAIN_VP", "value": 4 }
+    ],
+    "has_specimen": false,
+    "golden_ribbon_vp": null,
+    "next": ["IA20"]
+  },
+  {
+    "id": "IA20",
+    "island_id": "A",
+    "actions": [
+      { "type": "GAIN_SEAL_ANY_FREE" }
+    ],
+    "has_specimen": false,
+    "golden_ribbon_vp": null,
+    "next": ["IA21"]
+  },
+  {
+    "id": "IA21",
+    "island_id": "A",
+    "actions": [
+      { "type": "GAIN_COINS", "value": 3 },
+      { "type": "ADVANCE_THEORY", "value": 3 }
+    ],
+    "has_specimen": false,
+    "golden_ribbon_vp": 4,
+    "next": ["IA22"]
+  },
+  {
+    "id": "IA22",
+    "island_id": "A",
+    "actions": [
+      { "type": "CORRESPONDENCE", "value": 3 }
+    ],
+    "has_specimen": false,
+    "golden_ribbon_vp": null,
+    "next": ["IA23"]
+  },
+  {
+    "id": "IA23",
+    "island_id": "A",
+    "actions": [
+      { "type": "GAIN_VP", "value": 6 }
+    ],
+    "has_specimen": false,
+    "golden_ribbon_vp": null,
+    "next": ["IA24"]
+  },
+  {
+    "id": "IA24",
+    "island_id": "A",
+    "actions": [
+      { "type": "GAIN_VP", "value": 4 },
+      { "type": "END_OF_ISLAND_BONUS", "value": 3 }
+    ],
+    "has_specimen": false,
+    "golden_ribbon_vp": null,
+    "next": []
+  }
+]

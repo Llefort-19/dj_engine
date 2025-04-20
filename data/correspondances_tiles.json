@@ -1,0 +1,76 @@
+[
+    {
+      "tile_id": 1,
+      "first_place_rewards": [
+        { "type": "GAIN_TEMP_KNOWLEDGE", "value": 1 },
+        { "type": "GAIN_COINS", "value": 2 }
+      ],
+      "second_place_rewards": [
+        { "type": "GAIN_COINS", "value": 2 }
+      ]
+    },
+    {
+      "tile_id": 2,
+      "first_place_rewards": [
+        { "type": "GAIN_COINS", "value": 4 }
+      ],
+      "second_place_rewards": [
+        { "type": "GAIN_COINS", "value": 2 }
+      ]
+    },
+    {
+      "tile_id": 3,
+      "first_place_rewards": [
+        { "type": "ADVANCE_THEORY", "value": 2 }
+      ],
+      "second_place_rewards": [
+        { "type": "ADVANCE_THEORY", "value": 1 }
+      ]
+    },
+    {
+      "tile_id": 4,
+      "first_place_rewards": [
+        { "type": "EXPLORE", "value": 2 }
+      ],
+      "second_place_rewards": [
+        { "type": "EXPLORE", "value": 1 }
+      ]
+    },
+    {
+      "tile_id": 5,
+      "first_place_rewards": [
+        { "type": "NAVIGATE", "value": 2 }
+      ],
+      "second_place_rewards": [
+        { "type": "NAVIGATE", "value": 1 }
+      ]
+    },
+    {
+      "tile_id": 6,
+      "first_place_rewards": [
+        { "type": "ACADEMY", "cost_modifier": -2 }
+      ],
+      "second_place_rewards": [
+        { "type": "ACADEMY" }
+      ]
+    },
+    {
+      "tile_id": 7,
+      "first_place_rewards": [
+        { "type": "GAIN_VP", "value": 4 }
+      ],
+      "second_place_rewards": [
+        { "type": "GAIN_VP", "value": 2 }
+      ]
+    },
+    {
+      "tile_id": 8,
+      "first_place_rewards": [
+        { "type": "EXPLORE", "value": 1 },
+        { "type": "NAVIGATE", "value": 1 }
+      ],
+      "second_place_rewards": [
+        { "type": "CHOICE", "options": [ { "type": "NAVIGATE", "value": 1 }, { "type": "EXPLORE", "value": 1 } ] }
+      ]
+    }
+  ]

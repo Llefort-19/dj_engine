@@ -1,0 +1,301 @@
+[
+    {"_comment": "Main Diary 1 (Left Page - Exploration)"},
+    {
+      "location_id": "MAIN1_EXPLORE_1",
+      "locked": false,
+      "diary_type": "MAIN",
+      "action_type": "EXPLORE",
+      "placement_type": "CIRCULAR_MAGNIFYING_GLASS",
+      "wax_seal_requirements": { "GREEN": 1 },
+      "base_actions": [ { "type": "EXPLORE", "value": 2 } ],
+      "distinction_bonuses": {
+        "silver": [ { "type": "BONUS_EXPLORE", "value": 1 } ],
+        "golden": [ { "type": "BONUS_MOVEMENT_STOP" } ]
+      }
+    },
+    {
+      "location_id": "MAIN1_EXPLORE_2",
+      "locked": true,
+      "unlock_cost": 4,
+      "diary_type": "MAIN",
+      "action_type": "EXPLORE",
+      "placement_type": "CIRCULAR_MAGNIFYING_GLASS",
+      "wax_seal_requirements": { "GREEN": 2 },
+      "base_actions": [ { "type": "EXPLORE", "value": 3 } ],
+      "distinction_bonuses": {
+        "silver": [ { "type": "BONUS_EXPLORE", "value": 1 } ],
+        "golden": [ { "type": "BONUS_MOVEMENT_STOP" } ]
+      }
+    },
+    {
+      "location_id": "MAIN1_EXPLORE_3",
+      "locked": true,
+      "unlock_cost": 4,
+      "diary_type": "MAIN",
+      "action_type": "EXPLORE",
+      "placement_type": "CIRCULAR_MAGNIFYING_GLASS",
+      "wax_seal_requirements": { "GREEN": 3 },
+      "base_actions": [ { "type": "EXPLORE", "value": 4 } ],
+      "distinction_bonuses": {
+        "silver": [ { "type": "BONUS_EXPLORE", "value": 1 } ],
+        "golden": [ { "type": "BONUS_MOVEMENT_STOP" } ]
+      }
+    },
+    {"_comment": "Main Diary 1 (Right Page - Navigation)"},
+    {
+      "location_id": "MAIN1_NAVIGATE_1",
+      "locked": false,
+      "diary_type": "MAIN",
+      "action_type": "NAVIGATE",
+      "placement_type": "CIRCULAR_MAGNIFYING_GLASS",
+      "wax_seal_requirements": { "BLUE": 1 },
+      "base_actions": [ { "type": "NAVIGATE", "value": 2 } ],
+      "distinction_bonuses": {
+        "silver": [ { "type": "BONUS_NAVIGATE", "value": 1 } ],
+        "golden": [ { "type": "BONUS_MOVEMENT_STOP" } ]
+      }
+    },
+    {
+      "location_id": "MAIN1_NAVIGATE_2",
+      "locked": true,
+      "unlock_cost": 4,
+      "diary_type": "MAIN",
+      "action_type": "NAVIGATE",
+      "placement_type": "CIRCULAR_MAGNIFYING_GLASS",
+      "wax_seal_requirements": { "BLUE": 2 },
+      "base_actions": [ { "type": "NAVIGATE", "value": 3 } ],
+      "distinction_bonuses": {
+        "silver": [ { "type": "BONUS_NAVIGATE", "value": 1 } ],
+        "golden": [ { "type": "BONUS_MOVEMENT_STOP" } ]
+      }
+    },
+    {
+      "location_id": "MAIN1_NAVIGATE_3",
+      "locked": true,
+      "unlock_cost": 4,
+      "diary_type": "MAIN",
+      "action_type": "NAVIGATE",
+      "placement_type": "CIRCULAR_MAGNIFYING_GLASS",
+      "wax_seal_requirements": { "BLUE": 3 },
+      "base_actions": [ { "type": "NAVIGATE", "value": 4 } ],
+      "distinction_bonuses": {
+        "silver": [ { "type": "BONUS_NAVIGATE", "value": 1 } ],
+        "golden": [ { "type": "BONUS_MOVEMENT_STOP" } ]
+      }
+    },
+    {"_comment": "Main Diary 2 (Left Page - Correspondence)"},
+    {
+      "location_id": "MAIN2_CORRESPOND_1",
+      "locked": false,
+      "diary_type": "MAIN",
+      "action_type": "CORRESPONDENCE",
+      "placement_type": "CIRCULAR_MAGNIFYING_GLASS",
+      "wax_seal_requirements": { "YELLOW": 1 },
+      "base_actions": [ { "type": "CORRESPONDENCE", "value": 2 } ],
+      "distinction_bonuses": {
+        "silver": [ { "type": "BONUS_CORRESPONDENCE_STAMP", "value": 1 } ],
+        "golden": [ { "type": "BONUS_CORRESPONDENCE_SPLIT" } ]
+      }
+    },
+    {
+      "location_id": "MAIN2_CORRESPOND_2",
+      "locked": true,
+      "unlock_cost": 4,
+      "diary_type": "MAIN",
+      "action_type": "CORRESPONDENCE",
+      "placement_type": "CIRCULAR_MAGNIFYING_GLASS",
+      "wax_seal_requirements": { "YELLOW": 2 },
+      "base_actions": [ { "type": "CORRESPONDENCE", "value": 3 } ],
+      "distinction_bonuses": {
+        "silver": [ { "type": "BONUS_CORRESPONDENCE_STAMP", "value": 1 } ],
+        "golden": [ { "type": "BONUS_CORRESPONDENCE_SPLIT" } ]
+      }
+    },
+    {
+      "location_id": "MAIN2_CORRESPOND_3",
+      "locked": true,
+      "unlock_cost": 4,
+      "diary_type": "MAIN",
+      "action_type": "CORRESPONDENCE",
+      "placement_type": "CIRCULAR_MAGNIFYING_GLASS",
+      "wax_seal_requirements": { "YELLOW": 3 },
+      "base_actions": [ { "type": "CORRESPONDENCE", "value": 4 } ],
+      "distinction_bonuses": {
+        "silver": [ { "type": "BONUS_CORRESPONDENCE_STAMP", "value": 1 } ],
+        "golden": [ { "type": "BONUS_CORRESPONDENCE_SPLIT" } ]
+      }
+    },
+    {"_comment": "Main Diary 2 (Right Page - Academy)"},
+    {
+      "location_id": "MAIN2_ACADEMY_1",
+      "locked": false,
+      "diary_type": "MAIN",
+      "action_type": "ACADEMY",
+      "placement_type": "CIRCULAR_MAGNIFYING_GLASS",
+      "wax_seal_requirements": { "RED": 1 },
+      "base_actions": [ { "type": "ACADEMY" } ],
+      "distinction_bonuses": {
+        "silver": [ { "type": "BONUS_ACADEMY_SEAL" } ],
+        "golden": [ { "type": "BONUS_ACADEMY_DISCOUNT", "value": 1 } ]
+      }
+    },
+    {
+      "location_id": "MAIN2_ACADEMY_2",
+      "locked": true,
+      "unlock_cost": 4,
+      "diary_type": "MAIN",
+      "action_type": "ACADEMY",
+      "placement_type": "CIRCULAR_MAGNIFYING_GLASS",
+      "wax_seal_requirements": { "RED": 2 },
+      "base_actions": [ { "type": "ACADEMY" } , { "type": "ACADEMY", "cost_modifier": -1 } ],
+      "distinction_bonuses": {
+        "silver": [ { "type": "BONUS_ACADEMY_SEAL" } ],
+        "golden": [ { "type": "BONUS_ACADEMY_DISCOUNT", "value": 1 } ]
+      }
+    },
+    {
+      "location_id": "MAIN2_ACADEMY_3",
+      "locked": true,
+      "unlock_cost": 4,
+      "diary_type": "MAIN",
+      "action_type": "ACADEMY",
+      "placement_type": "CIRCULAR_MAGNIFYING_GLASS",
+      "wax_seal_requirements": { "RED": 3 },
+      "base_actions": [ { "type": "ACADEMY" }, { "type": "ACADEMY", "cost_modifier": -3 } ],
+      "distinction_bonuses": {
+        "silver": [ { "type": "BONUS_ACADEMY_SEAL" } ],
+        "golden": [ { "type": "BONUS_ACADEMY_DISCOUNT", "value": 1 } ]
+      }
+    },
+    {"_comment": "Small Diary"},
+    {
+        "location_id": "SMALL_UNLOCK_LENS_LEFT",
+        "locked": false,
+        "diary_type": "SMALL",
+        "action_type": "UNLOCK_LENS",
+        "placement_type": "CIRCULAR_MAGNIFYING_GLASS",
+        "wax_seal_requirements": {},
+        "base_actions": [ { "type": "UNLOCK_LENS" } ],
+        "distinction_bonuses": {}
+      },
+    {
+        "location_id": "SMALL_UNLOCK_LENS_RIGHT",
+        "locked": false,
+        "diary_type": "SMALL",
+        "action_type": "UNLOCK_LENS",
+        "placement_type": "CIRCULAR_MAGNIFYING_GLASS",
+        "wax_seal_requirements": {},
+        "base_actions": [ { "type": "UNLOCK_LENS" } ],
+        "distinction_bonuses": {}
+      },
+
+    {"_comment": "Museum Actions - Combined for simplicity in representation, split logic needed"},
+    {
+      "location_id": "MUSEUM",
+      "locked": false,
+      "diary_type": "OTHER",
+      "action_type": "MUSEUM",
+      "placement_type": "SQUARE_MAGNIFYING_GLASS",
+      "wax_seal_requirements": {},
+      "base_actions": [
+        { "type": "DELIVER_SPECIMEN" },
+        { "type": "RESEARCH_MUSEUM" }
+      ],
+      "distinction_bonuses": {}
+    },
+
+    {"_comment": "Reserve Turn Order - Using 2-player coin value per rulebook image p5"},
+    {
+      "location_id": "RESERVE_TURN_ORDER",
+      "diary_type": "OTHER",
+      "action_type": "RESERVE_TURN_ORDER",
+      "placement_type": "SQUARE_MAGNIFYING_GLASS",
+      "wax_seal_requirements": {},
+      "base_actions": [ { "type": "GAIN_COINS", "value": 3 } ],
+      "distinction_bonuses": {}
+    },
+
+    {"_comment": "Special Action Diary Slots - Actions depend on placed tiles"},
+    {
+        "location_id": "SPECIAL_ACTION_TL",
+        "locked": false,
+        "diary_type": "SPECIAL",
+        "action_type": "SPECIAL",
+        "placement_type": "CIRCULAR_MAGNIFYING_GLASS",
+        "wax_seal_requirements": {},
+        "base_actions": [ { "type": "SPECIAL" } ],
+        "distinction_bonuses": {
+            "silver": [ { "type": "GAIN_COINS", "value": 2 } ],
+            "golden": [ { "type": "GAIN_VP", "value": 3 } ]
+          }
+      },
+      {
+        "location_id": "SPECIAL_ACTION_ML",
+        "locked": true,
+        "unlock_cost": 4,
+        "diary_type": "SPECIAL",
+        "action_type": "SPECIAL",
+        "placement_type": "CIRCULAR_MAGNIFYING_GLASS",
+        "wax_seal_requirements": {},
+        "base_actions": [ { "type": "SPECIAL" } ],
+        "distinction_bonuses": {
+            "silver": [ { "type": "GAIN_COINS", "value": 2 } ],
+            "golden": [ { "type": "GAIN_VP", "value": 3 } ]
+          }
+      },
+      {
+        "location_id": "SPECIAL_ACTION_BL",
+        "locked": true,
+        "unlock_cost": 4,
+        "diary_type": "SPECIAL",
+        "action_type": "SPECIAL",
+        "placement_type": "CIRCULAR_MAGNIFYING_GLASS",
+        "wax_seal_requirements": {},
+        "base_actions": [ { "type": "SPECIAL" } ],
+        "distinction_bonuses": {
+            "silver": [ { "type": "GAIN_COINS", "value": 2 } ],
+            "golden": [ { "type": "GAIN_VP", "value": 3 } ]
+          }
+      },
+      {
+        "location_id": "SPECIAL_ACTION_TR",
+        "locked": false,
+        "diary_type": "SPECIAL",
+        "action_type": "SPECIAL",
+        "placement_type": "CIRCULAR_MAGNIFYING_GLASS",
+        "wax_seal_requirements": {},
+        "base_actions": [ { "type": "SPECIAL" } ],
+        "distinction_bonuses": {
+            "silver": [ { "type": "GAIN_COINS", "value": 2 } ],
+            "golden": [ { "type": "GAIN_VP", "value": 3 } ]
+          }
+      },
+      {
+        "location_id": "SPECIAL_ACTION_MR",
+        "locked": true,
+        "unlock_cost": 4,
+        "diary_type": "SPECIAL",
+        "action_type": "SPECIAL",
+        "placement_type": "CIRCULAR_MAGNIFYING_GLASS",
+        "wax_seal_requirements": {},
+        "base_actions": [ { "type": "SPECIAL" } ],
+        "distinction_bonuses": {
+            "silver": [ { "type": "GAIN_COINS", "value": 2 } ],
+            "golden": [ { "type": "GAIN_VP", "value": 3 } ]
+          }
+      },
+      {
+        "location_id": "SPECIAL_ACTION_BR",
+        "locked": true,
+        "unlock_cost": 4,
+        "diary_type": "SPECIAL",
+        "action_type": "SPECIAL",
+        "placement_type": "CIRCULAR_MAGNIFYING_GLASS",
+        "wax_seal_requirements": {},
+        "base_actions": [ { "type": "SPECIAL" } ],
+        "distinction_bonuses": {
+            "silver": [ { "type": "GAIN_COINS", "value": 2 } ],
+            "golden": [ { "type": "GAIN_VP", "value": 3 } ]
+          }
+      }
+]

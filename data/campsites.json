@@ -1,0 +1,114 @@
+[
+    {
+      "campsite_area_id": "CAMP_AREA_O6",
+      "originating_track_space_id": "O6",
+      "track_type": "Ocean",
+      "tent_slots": [
+        { "slot_index": 0, "placement_cost": 0 },
+        { "slot_index": 1, "placement_cost": 1 }
+      ],
+      "actions_on_placement": [
+        { "type": "GAIN_OBJECTIVE" },
+        { "type": "GAIN_COINS", "value": 3 	}
+      ]
+    },
+    {
+      "campsite_area_id": "CAMP_AREA_O12",
+      "originating_track_space_id": "O12",
+      "track_type": "Ocean",
+      "tent_slots": [
+        { "slot_index": 0, "placement_cost": 1 },
+        { "slot_index": 1, "placement_cost": 3 }
+      ],
+      "actions_on_placement": [
+        { "type": "GAIN_VP", "value": 1 },
+        { "type": "CORRESPONDENCE", "value": 3 }
+      ]
+    },
+    {
+      "campsite_area_id": "CAMP_AREA_O19",
+      "originating_track_space_id": "O19",
+      "track_type": "Ocean",
+      "tent_slots": [
+        { "slot_index": 0, "placement_cost": 3 },
+        { "slot_index": 1, "placement_cost": 5 }
+      ],
+      "actions_on_placement": [
+        { "type": "EXPLORE", "value": 2 },
+        { "type": "GAIN_VP", "value": 5 }
+      ]
+    },
+    {
+      "campsite_area_id": "CAMP_AREA_IA4",
+      "originating_track_space_id": "IA4",
+      "track_type": "Island A",
+      "tent_slots": [
+        { "slot_index": 0, "placement_cost": 0 },
+        { "slot_index": 1, "placement_cost": 1 }
+      ],
+      "actions_on_placement": [
+        { "type": "CORRESPONDENCE", "value": 2 }
+      ]
+    },
+    {
+      "campsite_area_id": "CAMP_AREA_IA7",
+      "originating_track_space_id": "IA7",
+      "track_type": "Island A",
+      "tent_slots": [
+        { "slot_index": 0, "placement_cost": 0 },
+        { "slot_index": 1, "placement_cost": 1 }
+      ],
+      "actions_on_placement": [
+        { "type": "NAVIGATE", "value": 2 }
+      ]
+    },
+    {
+      "campsite_area_id": "CAMP_AREA_IA14",
+      "originating_track_space_id": "IA14",
+      "track_type": "Island A",
+      "tent_slots": [
+        { "slot_index": 0, "placement_cost": 1 },
+        { "slot_index": 1, "placement_cost": 2 }
+      ],
+      "actions_on_placement": [
+        { "type": "GAIN_SEAL_ANY_FREE" }
+      ]
+    },
+    {
+      "campsite_area_id": "CAMP_AREA_IB4",
+      "originating_track_space_id": "IB4",
+      "track_type": "Island B",
+      "tent_slots": [
+        { "slot_index": 0, "placement_cost": 1 },
+        { "slot_index": 1, "placement_cost": 3 }
+      ],
+      "actions_on_placement": [
+        { "type": "ADVANCE_THEORY", "value": 3 }
+      ]
+    },
+    {
+      "campsite_area_id": "CAMP_AREA_IB9",
+      "originating_track_space_id": "IB9",
+      "track_type": "Island B",
+      "tent_slots": [
+        { "slot_index": 0, "placement_cost": 2 },
+        { "slot_index": 1, "placement_cost": 4 }
+      ],
+      "actions_on_placement": [
+        { "type": "GAIN_TEMP_KNOWLEDGE", "value": 1 },
+        { "type": "GAIN_VP", "value":4}
+      ]
+    },
+    {
+      "campsite_area_id": "CAMP_AREA_IC3",
+      "originating_track_space_id": "IC3",
+      "track_type": "Island C",
+      "tent_slots": [
+        { "slot_index": 0, "placement_cost": 2 },
+        { "slot_index": 1, "placement_cost": 4 }
+      ],
+      "actions_on_placement": [
+        { "type": "GAIN_VP", "value": 8 }
+      ]
+    }
+  ]

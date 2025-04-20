@@ -1,0 +1,106 @@
+[
+    {
+      "goal_id": 1,
+      "description": "Score 4 points for each of your Yellow Wax Seals.",
+      "scoring_condition": {
+        "type": "PER_SEAL",
+        "color": "YELLOW",
+        "points_per": 4
+      }
+    },
+    {
+      "goal_id": 2,
+      "description": "Score 4 points for each of your Red Wax Seals.",
+      "scoring_condition": {
+        "type": "PER_SEAL",
+        "color": "RED",
+        "points_per": 4
+      }
+    },
+    {
+      "goal_id": 3,
+      "description": "Score 4 points for each of your Green Wax Seals.",
+      "scoring_condition": {
+        "type": "PER_SEAL",
+        "color": "GREEN",
+        "points_per": 4
+      }
+    },
+    {
+      "goal_id": 4,
+      "description": "Score 4 points for each of your Blue Wax Seals.",
+      "scoring_condition": {
+        "type": "PER_SEAL",
+        "color": "BLUE",
+        "points_per": 4
+      }
+    },
+    {
+      "goal_id": 5,
+      "description": "Score 6 points for each of your Reptile Specimens.",
+      "scoring_condition": {
+        "type": "PER_SPECIMEN_RESEARCHED",
+        "kind": "REPTILE",
+        "points_per": 6
+      }
+    },
+    {
+      "goal_id": 6,
+      "description": "Score 6 points for each of your Plant Specimens.",
+      "scoring_condition": {
+        "type": "PER_SPECIMEN_RESEARCHED",
+        "kind": "PLANT",
+        "points_per": 6
+      }
+    },
+    {
+      "goal_id": 7,
+      "description": "Score 6 points for each of your Bird Specimens.",
+      "scoring_condition": {
+        "type": "PER_SPECIMEN_RESEARCHED",
+        "kind": "BIRD",
+        "points_per": 6
+      }
+    },
+    {
+      "goal_id": 8,
+      "description": "Score 6 points for each of your Fossil Specimens.",
+      "scoring_condition": {
+        "type": "PER_SPECIMEN_RESEARCHED",
+        "kind": "FOSSIL",
+        "points_per": 6
+      }
+    },
+    {
+      "goal_id": 9,
+      "description": "Score 8 points for each of your empty Stamp stacks.",
+      "scoring_condition": {
+        "type": "PER_EMPTY_STAMP_STACK",
+        "points_per": 8
+      }
+    },
+    {
+      "goal_id": 10,
+      "description": "Score 5 points for each location you have unlocked.",
+      "scoring_condition": {
+        "type": "PER_UNLOCKED_LENS",
+        "points_per": 5
+      }
+    },
+    {
+      "goal_id": 11,
+      "description": "Score 3 points for each of your achieved Objectives.",
+      "scoring_condition": {
+        "type": "PER_ACHIEVED_OBJECTIVE",
+        "points_per": 3
+      }
+    },
+    {
+      "goal_id": 12,
+      "description": "Score 4 points for each of your Tents on Campsites.",
+      "scoring_condition": {
+        "type": "PER_PLACED_TENT",
+        "points_per": 4
+      }
+    }
+  ]

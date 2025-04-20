@@ -1,0 +1,242 @@
+[
+    {
+      "id": "O0",
+      "silver_banner": false,
+      "beagle_goal": false,
+      "actions": [],
+      "has_specimen": false,
+      "next": ["O1"]
+    },
+    {
+      "id": "O1",
+      "silver_banner": true,
+      "beagle_goal": true,
+      "actions": [],
+      "has_specimen": false,
+      "spawns_explorer_on_island": "A",
+      "next": ["O2", "O3"]
+    },
+    {
+      "id": "O2",
+      "silver_banner": false,
+      "beagle_goal": false,
+      "actions": [],
+      "has_specimen": true,
+      "next": ["O3"]
+    },
+    {
+      "id": "O3",
+      "silver_banner": false,
+      "beagle_goal": false,
+      "actions": [],
+      "has_specimen": false,
+      "next": ["O4"]
+    },
+    {
+      "id": "O4",
+      "silver_banner": false,
+      "beagle_goal": true,
+      "actions": [],
+      "has_specimen": false,
+      "next": ["O5"]
+    },
+    {
+      "id": "O5",
+      "silver_banner": false,
+      "beagle_goal": false,
+      "actions": [],
+      "has_specimen": false,
+      "next": ["O6", "O7"]
+    },
+    {
+      "id": "O6",
+      "silver_banner": false,
+      "beagle_goal": false,
+      "actions": [
+        { "type": "CAMP" }
+      ],
+      "has_specimen": false,
+      "next": ["O7"]
+    },
+    {
+      "id": "O7",
+      "silver_banner": false,
+      "beagle_goal": false,
+      "actions": [],
+      "has_specimen": false,
+      "next": ["O8"]
+    },
+    {
+      "id": "O8",
+      "silver_banner": true,
+      "beagle_goal": true,
+      "actions": [],
+      "has_specimen": false,
+      "spawns_explorer_on_island": "B",
+      "next": ["O9"]
+    },
+    {
+      "id": "O9",
+      "silver_banner": false,
+      "beagle_goal": false,
+      "actions": [],
+      "has_specimen": false,
+      "next": ["O10", "O11"]
+    },
+    {
+      "id": "O10",
+      "silver_banner": false,
+      "beagle_goal": false,
+      "actions": [
+        { "type": "GAIN_COINS", "value": 4 }
+      ],
+      "has_specimen": false,
+      "next": ["O11"]
+    },
+    {
+      "id": "O11",
+      "silver_banner": false,
+      "beagle_goal": false,
+      "actions": [],
+      "has_specimen": false,
+      "next": ["O12", "O13"]
+    },
+    {
+      "id": "O12",
+      "silver_banner": false,
+      "beagle_goal": false,
+      "actions": [
+        { "type": "CAMP" }
+      ],
+      "has_specimen": false,
+      "next": ["O13"]
+    },
+    {
+      "id": "O13",
+      "silver_banner": false,
+      "beagle_goal": false,
+      "actions": [],
+      "has_specimen": false,
+      "next": ["O14"]
+    },
+    {
+      "id": "O14",
+      "silver_banner": true,
+      "beagle_goal": true,
+      "actions": [],
+      "has_specimen": false,
+      "spawns_explorer_on_island": "C",
+      "next": ["O15"]
+    },
+    {
+      "id": "O15",
+      "silver_banner": false,
+      "beagle_goal": false,
+      "actions": [],
+      "has_specimen": false,
+      "next": ["O16"]
+    },
+    {
+      "id": "O16",
+      "silver_banner": false,
+      "beagle_goal": false,
+      "actions": [],
+      "has_specimen": false,
+      "next": ["O17", "O18"]
+    },
+    {
+      "id": "O17",
+      "silver_banner": false,
+      "beagle_goal": false,
+      "actions": [
+        { "type": "GAIN_COINS", "value": 3 },
+        { "type": "ADVANCE_THEORY", "value": 2 }
+      ],
+      "has_specimen": false,
+      "next": ["O18"]
+    },
+    {
+      "id": "O18",
+      "silver_banner": false,
+      "beagle_goal": false,
+      "actions": [],
+      "has_specimen": false,
+      "next": ["O19"]
+    },
+    {
+      "id": "O19",
+      "silver_banner": false,
+      "beagle_goal": false,
+      "actions": [
+        { "type": "CAMP" }
+      ],
+      "has_specimen": false,
+      "next": ["O20", "O21"]
+    },
+    {
+      "id": "O20",
+      "silver_banner": false,
+      "beagle_goal": false,
+      "actions": [],
+      "has_specimen": false,
+      "next": ["O21"]
+    },
+    {
+      "id": "O21",
+      "silver_banner": false,
+      "beagle_goal": true,
+      "actions": [],
+      "has_specimen": false,
+      "next": ["O22"]
+    },
+    {
+      "id": "O22",
+      "silver_banner": false,
+      "beagle_goal": false,
+      "actions": [
+        { "type": "GAIN_VP", "value": 2 }
+      ],
+      "has_specimen": false,
+      "next": ["O23"]
+    },
+    {
+      "id": "O23",
+      "silver_banner": false,
+      "beagle_goal": false,
+      "actions": [
+        { "type": "GAIN_VP", "value": 3 }
+      ],
+      "has_specimen": false,
+      "next": ["O24"]
+    },
+    {
+      "id": "O24",
+      "silver_banner": false,
+      "beagle_goal": false,
+      "actions": [
+        { "type": "GAIN_VP", "value": 4 }
+      ],
+      "has_specimen": false,
+      "next": ["O25"]
+    },
+    {
+      "id": "O25",
+      "silver_banner": false,
+      "beagle_goal": false,
+      "actions": [
+        { "type": "GAIN_VP", "value": 5 }
+      ],
+      "has_specimen": false,
+      "next": ["O26"]
+    },
+    {
+      "id": "O26",
+      "silver_banner": false,
+      "beagle_goal": false,
+      "actions": [
+        { "type": "GAIN_VP", "value": 3 }, {"type": "END_OF_OCEAN_BONUS", "value": 3}
+      ],
+      "has_specimen": false,
+      "next": []
+    }
+  ]

@@ -1,0 +1,21 @@
+[
+    { "token_id": "SPN_GREEN_REPTILE",  "museum_row": "A", "museum_col": 1, "kind": "REPTILE", "colour": "GREEN" },
+    { "token_id": "SPN_GREEN_PLANT",    "museum_row": "A", "museum_col": 2, "kind": "PLANT",   "colour": "GREEN" },
+    { "token_id": "SPN_GREEN_BIRD",     "museum_row": "A", "museum_col": 3, "kind": "BIRD",    "colour": "GREEN" },
+    { "token_id": "SPN_GREEN_FOSSIL",   "museum_row": "A", "museum_col": 4, "kind": "FOSSIL",  "colour": "GREEN" },
+
+    { "token_id": "SPN_BLUE_REPTILE",   "museum_row": "B", "museum_col": 1, "kind": "REPTILE", "colour": "BLUE" },
+    { "token_id": "SPN_BLUE_PLANT",     "museum_row": "B", "museum_col": 2, "kind": "PLANT",   "colour": "BLUE" },
+    { "token_id": "SPN_BLUE_BIRD",      "museum_row": "B", "museum_col": 3, "kind": "BIRD",    "colour": "BLUE" },
+    { "token_id": "SPN_BLUE_FOSSIL",    "museum_row": "B", "museum_col": 4, "kind": "FOSSIL",  "colour": "BLUE" },
+
+    { "token_id": "SPN_RED_REPTILE",    "museum_row": "C", "museum_col": 1, "kind": "REPTILE", "colour": "RED" },
+    { "token_id": "SPN_RED_PLANT",      "museum_row": "C", "museum_col": 2, "kind": "PLANT",   "colour": "RED" },
+    { "token_id": "SPN_RED_BIRD",       "museum_row": "C", "museum_col": 3, "kind": "BIRD",    "colour": "RED" },
+    { "token_id": "SPN_RED_FOSSIL",     "museum_row": "C", "museum_col": 4, "kind": "FOSSIL",  "colour": "RED" },
+
+    { "token_id": "SPN_YELLOW_REPTILE", "museum_row": "D", "museum_col": 1, "kind": "REPTILE", "colour": "YELLOW" },
+    { "token_id": "SPN_YELLOW_PLANT",   "museum_row": "D", "museum_col": 2, "kind": "PLANT",   "colour": "YELLOW" },
+    { "token_id": "SPN_YELLOW_BIRD",    "museum_row": "D", "museum_col": 3, "kind": "BIRD",    "colour": "YELLOW" },
+    { "token_id": "SPN_YELLOW_FOSSIL",  "museum_row": "D", "museum_col": 4, "kind": "FOSSIL",  "colour": "YELLOW" }
+  ]

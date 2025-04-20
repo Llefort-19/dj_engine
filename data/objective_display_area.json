@@ -1,0 +1,31 @@
+{
+    "area_id": "OBJECTIVE_DISPLAY_AREA",
+    "description": "Area on the main board holding objective tile stacks and the face-up display.",
+    "components": [
+      {
+        "component_type": "DECK_SLOT",
+        "objective_type": "silver",
+        "description": "Location for the face-down Silver Objective tile deck."
+      },
+      {
+        "component_type": "DECK_SLOT",
+        "objective_type": "gold",
+        "description": "Location for the face-down Golden Objective tile deck."
+      },
+      {
+        "component_type": "DISPLAY_SLOT",
+        "objective_type": "silver",
+        "count": 2,
+        "description": "Two slots displaying face-up Silver Objective tiles available to take."
+      },
+      {
+        "component_type": "DISPLAY_SLOT",
+        "objective_type": "gold",
+        "count": 2,
+        "description": "Two slots displaying face-up Golden Objective tiles available to take."
+      }
+    ],
+    "_comment": "This area itself is not a worker placement location. Gaining objectives happens via other actions (e.g., track bonuses, campsite actions).",
+    "is_worker_placement_location": false,
+    "actions_on_placement": []
+  }

@@ -155,7 +155,5 @@ report*/
 Thumbs.db
 
 # Data files (adjust if your data should be versioned)
-data/
 *.csv
-*.json
 *.pkl 

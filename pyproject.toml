@@ -1,0 +1,63 @@
+[tool.poetry]
+name = "dj-engine"
+version = "0.1.0"
+description = "Darwin's Journey Game Engine"  # Added a placeholder description
+authors = ["Your Name <your.email@example.com>"] # <-- TODO: Replace with your actual name and email
+readme = "README.md"
+packages = [{include = "dj_engine"}]
+
+[tool.poetry.dependencies]
+python = "^3.13"
+pettingzoo = "^1.24.3"
+gymnasium = "^1.1.1"
+rich = "^14.0.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.5"
+hypothesis = "^6.131.6"
+ruff = "^0.11.6"
+mypy = "^1.15.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+# --- Tool Configurations ---
+
+[tool.ruff]
+# Match the target Python version
+target-version = "py313"
+line-length = 88
+# Select common rulesets: pyflakes, pycodestyle, isort, pyupgrade, etc.
+select = ["E", "F", "W", "I", "UP"]
+ignore = []
+
+[tool.ruff.format]
+# preview = true # Optional: Enable preview features if desired
+
+# [tool.ruff.isort] # Optional: Configure import sorting if needed
+
+[tool.mypy]
+python_version = "3.13"
+warn_unused_configs = true
+# Strict checking options
+strict = true
+# You might need to ignore missing imports for some libraries initially
+# ignore_missing_imports = true
+
+# [[tool.mypy.overrides]]
+# module = [
+#    "pettingzoo.*", # Example if needed later
+#    "gymnasium.*",
+#    "rich.*",
+# ]
+# ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q" # Report extra test summary info, quiet mode
+testpaths = [
+    "tests",
+    # If you created your project with --src, use this instead:
+    # "tests", "src"
+]

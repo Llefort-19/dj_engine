@@ -6,6 +6,14 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
+from .constants import (
+    ActionType,
+    ObjectiveRequirementType,
+    SealColor,
+    SpecimenKind,
+    TrackType,
+)
+
 # Configure logging
 logger = logging.getLogger(__name__)
 
@@ -13,24 +21,19 @@ logger = logging.getLogger(__name__)
 
 
 @dataclass
-class BaseData:
-    id: str  # Assuming most data items have an ID
-
-
-@dataclass
 class SimpleActionInfo:
     """Represents a simple action definition, often used in rewards/bonuses."""
 
-    type: str  # Consider ActionType Enum later
+    type: ActionType | str
     # Updated to allow list for CHOICE options
     value: int | str | list[dict[str, Any]] | None = None
     choice_source: str | None = None  # Added for special action tile 5
 
 
 @dataclass
-class AcademyScroll(BaseData):
-    # Placeholder fields - inspect academy_scrolls.json
-    scroll_row: int  # Using row as the primary identifier conceptually
+class AcademyScroll:
+    id: str
+    scroll_row: int
     cost: int
     slots: int
 
@@ -42,8 +45,8 @@ class ScoringCondition:
     type: str  # e.g., PER_SEAL, PER_SPECIMEN_RESEARCHED
     points_per: int
     # Optional fields based on type
-    color: str | None = None  # TODO: Use SealColor Enum?
-    kind: str | None = None  # TODO: Use SpecimenKind Enum?
+    color: SealColor | None = None
+    kind: SpecimenKind | None = None
 
 
 @dataclass
@@ -63,10 +66,10 @@ class TentSlotInfo:
 
 
 @dataclass
-class Campsite(BaseData):
-    id: str  # campsite_area_id
+class Campsite:
+    id: str
     originating_track_space_id: str
-    track_type: str  # Potential Enum later
+    track_type: TrackType
     tent_slots: list[TentSlotInfo]
     actions_on_placement: list[SimpleActionInfo]
     # island: str = "" # Removed, track_type is more informative
@@ -89,18 +92,19 @@ class DistinctionBonus:
     value: int | None = None  # For bonuses like +1 explore, discount value
 
 
+# Uncommenting CrewCard
 @dataclass
 class CrewCard:
     id: int
-    starting_seal_color: str  # TODO: Consider SealColor Enum
-    activation_requirement: dict[str, int]  # Maps seal color to count
-    achieved_actions: list[SimpleActionInfo]
+    starting_seal_color: SealColor
+    activation_requirement: dict[SealColor, int] = field(default_factory=dict)
+    achieved_actions: list[SimpleActionInfo] = field(default_factory=list)
     # name: str = ""  # No name field observed in JSON
     # ability: str = "" # Represented by achieved_actions
 
 
 @dataclass
-class TrackSpace(BaseData):
+class TrackSpace:
     id: str
     silver_banner: bool = False
     beagle_goal: bool = False
@@ -109,18 +113,18 @@ class TrackSpace(BaseData):
     next: list[str] = field(default_factory=list)
     spawns_explorer_on_island: str | None = None
     campsite_area_id: str | None = None
-    golden_ribbon_vp: int | None = None  # VP gained by FIRST player entering
+    golden_ribbon_vp: int | None = None
 
 
 @dataclass
-class BoardActionLocation(BaseData):
-    id: str  # location_id
-    action_type: str  # Consider Enum later
+class BoardActionLocation:
+    id: str
+    action_type: str
     diary_type: str  # MAIN, SMALL, OTHER, SPECIAL
     placement_type: str  # CIRCULAR_MAGNIFYING_GLASS, SQUARE_MAGNIFYING_GLASS
     locked: bool = False
     unlock_cost: int | None = None
-    wax_seal_requirements: dict[str, int] = field(
+    wax_seal_requirements: dict[SealColor, int] = field(
         default_factory=dict
     )  # Color -> Count
     base_actions: list[SimpleActionInfo] = field(default_factory=list)
@@ -155,10 +159,10 @@ class ObjectiveDisplayAreaInfo:
 class ObjectiveRequirement:
     """Represents a single requirement for an objective tile."""
 
-    type: str  # e.g., HAVE_SEALS, HAVE_SPECIMEN_RESEARCHED
+    type: ObjectiveRequirementType
     # Optional fields depending on requirement type
-    color: str | None = None  # TODO: Use SealColor Enum?
-    kind: str | None = None  # TODO: Use SpecimenKind Enum? Or Color string?
+    color: SealColor | None = None
+    kind: SpecimenKind | None = None
     count: int | None = None
     value: int | None = None  # e.g., for track positions
 
@@ -166,8 +170,9 @@ class ObjectiveRequirement:
 @dataclass
 class ObjectiveTile:
     id: int
-    type: str  # "silver", "gold", or "starting" (from starting_objectives_tiles.json)
+    type: str  # "silver" or "gold"
     requirements: list[ObjectiveRequirement]
+    starting: bool = False  # True if it's a starting objective
     # condition: str = "" # Replaced by requirements list
     # vp: int = 0 # VP seems implicit based on type/game rules, not stored here
 
@@ -263,13 +268,12 @@ class SpecialActionTile:
 
 
 @dataclass
-class Species(BaseData):
-    # Placeholder fields - inspect species.json
-    id: str  # Overriding BaseData id to match 'token_id'
+class Species:
+    id: str
     museum_row: str
     museum_col: int
-    kind: str  # TODO: Consider using SpecimenKind Enum from constants.py later
-    colour: str  # TODO: Consider using Color Enum from constants.py later
+    kind: SpecimenKind
+    colour: SealColor
 
 
 @dataclass
@@ -283,6 +287,7 @@ class TheoryTrackSpace:
 
 # --- Data Loading Functions (Placeholders) ---
 
+# Correct path assuming data/ is at the project root (sibling to src/)
 DATA_PATH = Path(__file__).parent.parent.parent / "data"
 
 
@@ -338,6 +343,7 @@ def _parse_track_spaces(raw_data: Any, track_name: str) -> dict[str, TrackSpace]
                     f"space {space_id}: {raw_actions}"
                 )
 
+            # Restore full instantiation
             space = TrackSpace(
                 id=space_id,
                 silver_banner=item.get("silver_banner", False),
@@ -357,6 +363,73 @@ def _parse_track_spaces(raw_data: Any, track_name: str) -> dict[str, TrackSpace]
 
     logger.info(f"Parsed {len(track_data)} track spaces from {track_name}.")
     return track_data
+
+
+def _parse_action(
+    action_dict: dict[str, Any] | None, context: str
+) -> SimpleActionInfo | None:
+    """Helper function to parse an action dictionary, converting type to Enum."""
+    # Handle None input gracefully (e.g., missing optional 'reward_action')
+    if action_dict is None:
+        return None
+
+    if not isinstance(action_dict, dict):
+        # Allow empty dicts like in tent_slot 0, treat as None
+        if isinstance(action_dict, dict) and not action_dict:
+            return None
+        logger.warning(f"Invalid action dict (not a dict) in {context}: {action_dict}")
+        return None
+
+    # Check for empty dict after type check
+    if not action_dict:
+        return None
+
+    try:
+        value_data: int | str | list[dict[str, Any]] | None = None
+        action_type_str = action_dict["type"]
+        action_type_val: ActionType | str  # Type hint for the final value
+
+        # Check for specific string types first
+        if action_type_str == "SPECIAL":
+            action_type_val = ActionType.PERFORM_SPECIAL_TILE_ACTION
+        elif action_type_str.startswith("OBJECTIVE_"):
+            action_type_val = action_type_str
+        else:
+            # Otherwise, try to convert to ActionType Enum
+            try:
+                action_type_val = ActionType[action_type_str]
+            except KeyError:
+                logger.error(
+                    f"Invalid action type string '{action_type_str}' "
+                    f"in {context}: {action_dict}"
+                )
+                return None
+
+        # Handle value based on type (only needed for CHOICE Enum)
+        if (
+            isinstance(action_type_val, ActionType)
+            and action_type_val == ActionType.CHOICE
+        ):
+            value_data = action_dict.get("options")
+        else:
+            value_data = action_dict.get("value", action_dict.get("cost_modifier"))
+
+        # Ignore value for PERFORM_SPECIAL_TILE_ACTION as it's just a placeholder
+        if action_type_val == ActionType.PERFORM_SPECIAL_TILE_ACTION:
+            value_data = None
+
+        # Ignoring timing for now - logic needs to handle it
+        return SimpleActionInfo(
+            type=action_type_val,
+            value=value_data,
+            choice_source=action_dict.get("choice_source"),
+        )
+    except KeyError as e:
+        logger.error(f"Missing key {e} in action for {context}: {action_dict}")
+        return None
+    except Exception as e:
+        logger.error(f"Error parsing action for {context} {action_dict}: {e}")
+        return None
 
 
 # Example loading functions (will need implementation and parsing logic)
@@ -414,11 +487,38 @@ def load_beagles_goals() -> dict[int, BeagleGoal]:
                 )
                 continue  # Skip this goal if condition is invalid
 
+            # Parse scoring condition with Enum conversion
+            condition_type_str = raw_condition["type"]
+            # TODO: Implement ScoringConditionType Enum?
+            # For now, keep type as str, but parse color/kind
+            color_str = raw_condition.get("color")
+            kind_str = raw_condition.get("kind")
+
+            color_enum: SealColor | None = None
+            if color_str:
+                try:
+                    color_enum = SealColor[color_str]
+                except KeyError:
+                    logger.warning(
+                        f"Invalid scoring condition color '{color_str}' "
+                        f"in goal {goal_id}: {raw_condition}"
+                    )
+
+            kind_enum: SpecimenKind | None = None
+            if kind_str:
+                try:
+                    kind_enum = SpecimenKind[kind_str]
+                except KeyError:
+                    logger.warning(
+                        f"Invalid scoring condition kind '{kind_str}' "
+                        f"in goal {goal_id}: {raw_condition}"
+                    )
+
             condition = ScoringCondition(
-                type=raw_condition["type"],
+                type=condition_type_str,  # Keeping type as str for now
                 points_per=raw_condition["points_per"],
-                color=raw_condition.get("color"),
-                kind=raw_condition.get("kind"),
+                color=color_enum,
+                kind=kind_enum,
             )
 
             goal = BeagleGoal(
@@ -450,8 +550,19 @@ def load_campsites() -> dict[str, Campsite]:
             continue
         try:
             campsite_id = item["campsite_area_id"]
+            track_type_str = item["track_type"]
 
-            # Parse tent slots
+            try:
+                # Use value lookup now that Enum values match JSON strings
+                track_type_enum = TrackType(track_type_str)
+            except ValueError:  # Catch ValueError for invalid value lookup
+                logger.error(
+                    f"Invalid track type string '{track_type_str}' "
+                    f"for campsite {campsite_id}: {item}"
+                )
+                continue  # Skip this campsite
+
+            # Parse tent slots (no enums here)
             raw_slots = item.get("tent_slots", [])
             parsed_slots: list[TentSlotInfo] = []
             if isinstance(raw_slots, list):
@@ -465,15 +576,16 @@ def load_campsites() -> dict[str, Campsite]:
             else:
                 logger.warning(f"'tent_slots' not a list in campsite {campsite_id}")
 
-            # Parse actions on placement
+            # Parse actions on placement (uses _parse_action which handles Enums)
             raw_actions = item.get("actions_on_placement", [])
             parsed_actions: list[SimpleActionInfo] = []
             if isinstance(raw_actions, list):
                 for act_item in raw_actions:
-                    if isinstance(act_item, dict):
-                        action_info = SimpleActionInfo(
-                            type=act_item["type"], value=act_item.get("value")
-                        )
+                    # Use _parse_action helper
+                    action_info = _parse_action(
+                        act_item, f"campsite {campsite_id} action"
+                    )
+                    if action_info:
                         parsed_actions.append(action_info)
             else:
                 logger.warning(
@@ -483,7 +595,7 @@ def load_campsites() -> dict[str, Campsite]:
             campsite = Campsite(
                 id=campsite_id,
                 originating_track_space_id=item["originating_track_space_id"],
-                track_type=item["track_type"],
+                track_type=track_type_enum,
                 tent_slots=parsed_slots,
                 actions_on_placement=parsed_actions,
             )
@@ -512,27 +624,19 @@ def load_correspondences_tiles() -> dict[int, CorrespondenceTile]:
         parsed_rewards: list[SimpleActionInfo] = []
         if isinstance(reward_list_raw, list):
             for act_item in reward_list_raw:
-                if isinstance(act_item, dict):
-                    # Handle the CHOICE type - store its options raw for now
-                    # The action logic will need to interpret this later.
-                    if act_item.get("type") == "CHOICE":
-                        # Storing options dict directly in value for simplicity now.
-                        # Might need a more structured approach later
-                        # (e.g., separate ChoiceActionInfo)
-                        action_info = SimpleActionInfo(
-                            type="CHOICE", value=act_item.get("options")
-                        )
-                    else:
-                        action_info = SimpleActionInfo(
-                            type=act_item["type"],
-                            value=act_item.get("value", act_item.get("cost_modifier")),
-                        )
+                # Reuse the main _parse_action helper which handles Enum conversion
+                action_info = _parse_action(
+                    act_item, f"correspondence tile {tile_id} {place} reward"
+                )
+                if action_info:
                     parsed_rewards.append(action_info)
                 else:
-                    logger.warning(
-                        f"Skipping non-dict {place} "
-                        f"reward in tile {tile_id}: {act_item}"
-                    )
+                    # _parse_action already logs warnings/errors
+                    pass
+                    # logger.warning(
+                    #     f"Skipping non-dict {place} "
+                    #     f"reward in tile {tile_id}: {act_item}"
+                    # )
         else:
             logger.warning(f"'{place}_place_rewards' not a list in tile {tile_id}")
         return parsed_rewards
@@ -583,22 +687,49 @@ def load_crew_cards() -> dict[int, CrewCard]:
             continue
         try:
             card_id = item["card_id"]
+            start_seal_str = item["starting_seal_color"]
+            raw_req = item["activation_requirement"]
+
+            try:
+                start_seal_enum = SealColor[start_seal_str]
+            except KeyError:
+                logger.error(
+                    f"Invalid starting seal color '{start_seal_str}' "
+                    f"for crew card {card_id}: {item}"
+                )
+                continue  # Skip this card
+
+            # Parse activation requirement dict (keys are SealColor)
+            parsed_req: dict[SealColor, int] = {}
+            if isinstance(raw_req, dict):
+                for seal_str, count in raw_req.items():
+                    try:
+                        seal_enum = SealColor[seal_str]
+                        if isinstance(count, int):
+                            parsed_req[seal_enum] = count
+                        else:
+                            logger.warning(
+                                f"Invalid count '{count}' for seal '{seal_str}' "
+                                f"in crew card {card_id} requirement"
+                            )
+                    except KeyError:
+                        logger.warning(
+                            f"Invalid seal color key '{seal_str}' "
+                            f"in crew card {card_id} requirement: {raw_req}"
+                        )
+            else:
+                logger.warning(
+                    f"Invalid activation_requirement format for crew card {card_id}"
+                )
+
+            # Parse achieved actions (uses _parse_action)
             raw_actions = item.get("achieved_actions", [])
             parsed_actions: list[SimpleActionInfo] = []
             if isinstance(raw_actions, list):
                 for act_item in raw_actions:
-                    if isinstance(act_item, dict):
-                        action_info = SimpleActionInfo(
-                            type=act_item["type"],
-                            # Handle value or modifier
-                            value=act_item.get("value", act_item.get("cost_modifier")),
-                        )
+                    action_info = _parse_action(act_item, f"crew card {card_id} action")
+                    if action_info:
                         parsed_actions.append(action_info)
-                    else:
-                        logger.warning(
-                            f"Skipping non-dict action "
-                            f"in crew card {card_id}: {act_item}"
-                        )
             else:
                 logger.warning(
                     f"'achieved_actions' is not a list in crew card "
@@ -607,8 +738,8 @@ def load_crew_cards() -> dict[int, CrewCard]:
 
             card = CrewCard(
                 id=card_id,
-                starting_seal_color=item["starting_seal_color"],
-                activation_requirement=item["activation_requirement"],
+                starting_seal_color=start_seal_enum,
+                activation_requirement=parsed_req,
                 achieved_actions=parsed_actions,
             )
             crew_data[card_id] = card
@@ -650,21 +781,44 @@ def load_main_board_actions() -> dict[str, BoardActionLocation]:
 
         try:
             location_id = item["location_id"]
+            action_type_str = item["action_type"]
 
-            # Parse base actions
+            # Parse base actions (uses _parse_action)
             raw_base_actions = item.get("base_actions", [])
             parsed_base_actions: list[SimpleActionInfo] = []
             if isinstance(raw_base_actions, list):
                 for act_item in raw_base_actions:
-                    if isinstance(act_item, dict):
-                        action_info = SimpleActionInfo(
-                            type=act_item["type"],
-                            # Reuse logic from CrewCard
-                            value=act_item.get("value", act_item.get("cost_modifier")),
-                        )
+                    action_info = _parse_action(
+                        act_item, f"location {location_id} base action"
+                    )
+                    if action_info:
                         parsed_base_actions.append(action_info)
 
-            # Parse distinction bonuses
+            # Parse wax seal requirements (keys are SealColor)
+            raw_wax_req = item.get("wax_seal_requirements", {})
+            parsed_wax_req: dict[SealColor, int] = {}
+            if isinstance(raw_wax_req, dict):
+                for seal_str, count in raw_wax_req.items():
+                    try:
+                        seal_enum = SealColor[seal_str]
+                        if isinstance(count, int):
+                            parsed_wax_req[seal_enum] = count
+                        else:
+                            logger.warning(
+                                f"Invalid count '{count}' for seal '{seal_str}' "
+                                f"in location {location_id} requirement"
+                            )
+                    except KeyError:
+                        logger.warning(
+                            f"Invalid seal color key '{seal_str}' "
+                            f"in location {location_id} requirement: {raw_wax_req}"
+                        )
+            else:
+                logger.warning(
+                    f"Invalid wax_seal_requirements format for location {location_id}"
+                )
+
+            # Parse distinction bonuses (no enums here yet)
             raw_distinctions = item.get("distinction_bonuses", {})
             parsed_distinctions: dict[str, list[DistinctionBonus]] = {
                 "silver": [],
@@ -677,19 +831,19 @@ def load_main_board_actions() -> dict[str, BoardActionLocation]:
                         for bonus_item in bonus_list:
                             if isinstance(bonus_item, dict):
                                 bonus = DistinctionBonus(
-                                    type=bonus_item["type"],
+                                    type=bonus_item["type"],  # Keep type as str for now
                                     value=bonus_item.get("value"),
                                 )
                                 parsed_distinctions[bonus_type].append(bonus)
 
             location = BoardActionLocation(
                 id=location_id,
-                action_type=item["action_type"],
+                action_type=action_type_str,
                 diary_type=item["diary_type"],
                 placement_type=item["placement_type"],
                 locked=item.get("locked", False),
                 unlock_cost=item.get("unlock_cost"),
-                wax_seal_requirements=item.get("wax_seal_requirements", {}),
+                wax_seal_requirements=parsed_wax_req,
                 base_actions=parsed_base_actions,
                 distinction_bonuses=parsed_distinctions,
             )
@@ -777,10 +931,66 @@ def load_objective_tiles() -> dict[int, ObjectiveTile]:
             if isinstance(raw_reqs, list):
                 for req_item in raw_reqs:
                     if isinstance(req_item, dict):
+                        req_type_str = req_item.get("type")
+                        if not req_type_str:
+                            logger.warning(
+                                f"Missing req type for start obj {objective_id}"
+                            )
+                            continue
+
+                        color_str = req_item.get("color")
+                        kind_str = req_item.get("kind")
+                        color_enum: SealColor | None = None
+                        kind_enum: SpecimenKind | None = None
+
+                        try:
+                            req_type_enum = ObjectiveRequirementType[req_type_str]
+                        except KeyError:
+                            logger.error(
+                                f"Invalid objective req type '{req_type_str}' "
+                                f"in objective {objective_id}: {req_item}"
+                            )
+                            continue  # Skip this requirement
+
+                        # --- Conditional Parsing based on Type ---
+                        if req_type_enum == ObjectiveRequirementType.HAVE_SEALS:
+                            if color_str:
+                                try:
+                                    color_enum = SealColor[color_str]
+                                except KeyError:
+                                    logger.warning(
+                                        f"Invalid color '{color_str}' for HAVE_SEALS "
+                                        f"in obj {objective_id}: {req_item}"
+                                    )
+                            # Kind is not relevant for HAVE_SEALS
+                        elif (
+                            req_type_enum
+                            == ObjectiveRequirementType.HAVE_SPECIMEN_RESEARCHED
+                        ):
+                            if color_str:
+                                try:
+                                    # Specimen can have color (e.g. RED)
+                                    color_enum = SealColor[color_str]
+                                except KeyError:
+                                    logger.warning(
+                                        f"Invalid color '{color_str}' for SPECIMEN req "
+                                        f"in objective {objective_id}: {req_item}"
+                                    )
+                            if kind_str:
+                                try:
+                                    kind_enum = SpecimenKind[kind_str]
+                                except KeyError:
+                                    logger.warning(
+                                        f"Invalid kind '{kind_str}' for SPECIMEN req "
+                                        f"in objective {objective_id}: {req_item}"
+                                    )
+                        # Add elif for other types needing color/kind if any arise
+                        # --- End Conditional Parsing ---
+
                         req = ObjectiveRequirement(
-                            type=req_item["type"],
-                            color=req_item.get("color"),
-                            kind=req_item.get("kind"),
+                            type=req_type_enum,
+                            color=color_enum,  # Will be None if not relevant/parsed
+                            kind=kind_enum,  # Will be None if not relevant/parsed
                             count=req_item.get("count"),
                             value=req_item.get("value"),
                         )
@@ -796,8 +1006,12 @@ def load_objective_tiles() -> dict[int, ObjectiveTile]:
                     f"{objective_id}: {raw_reqs}"
                 )
 
+            # Type for ObjectiveTile remains str for silver/gold
             tile = ObjectiveTile(
-                id=objective_id, type=item["type"], requirements=parsed_reqs
+                id=objective_id,
+                type=item["type"],
+                requirements=parsed_reqs,
+                starting=item.get("starting", False),  # Read the new boolean flag
             )
             objective_data[objective_id] = tile
         except KeyError as e:
@@ -823,36 +1037,6 @@ def load_personal_board() -> PersonalBoardDefinition:
     if not isinstance(raw_data, dict):
         logger.error("personal_board.json is not a dictionary")
         raise TypeError("Expected dict in personal_board.json")
-
-    # --- Helper to parse actions (similar to previous parsers) ---
-    def _parse_action(
-        action_dict: dict[str, Any] | None, context: str
-    ) -> SimpleActionInfo | None:
-        if not action_dict or not isinstance(action_dict, dict):
-            # Allow empty dicts like in tent_slot 0
-            if isinstance(action_dict, dict) and not action_dict:
-                return None
-            logger.warning(f"Invalid action dict in {context}: {action_dict}")
-            return None
-        try:
-            value_data: int | str | list[dict[str, Any]] | None = None
-            if action_dict.get("type") == "CHOICE":
-                value_data = action_dict.get("options")
-            else:
-                value_data = action_dict.get("value", action_dict.get("cost_modifier"))
-
-            # Ignoring timing for now - logic needs to handle it
-            return SimpleActionInfo(
-                type=action_dict["type"],
-                value=value_data,
-                choice_source=action_dict.get("choice_source"),
-            )
-        except KeyError as e:
-            logger.error(f"Missing key {e} in action for {context}: {action_dict}")
-            return None
-        except Exception as e:
-            logger.error(f"Error parsing action for {context} {action_dict}: {e}")
-            return None
 
     # --- Parse Worker Rows ---
     parsed_worker_rows: list[PersonalBoardWorkerRow] = []
@@ -1100,12 +1284,35 @@ def load_species() -> dict[str, Species]:
             continue
         try:
             token_id = item["token_id"]
+            kind_str = item["kind"]
+            colour_str = item["colour"]
+
+            try:
+                kind_enum = SpecimenKind[kind_str]
+            except KeyError:
+                logger.error(
+                    f"Invalid specimen kind string '{kind_str}' "
+                    f"for species {token_id}: {item}"
+                )
+                continue  # Skip this species
+
+            try:
+                # Assuming colour in JSON maps directly to SealColor enum names
+                # (e.g., "BLUE", "GREEN", etc.)
+                colour_enum = SealColor[colour_str]
+            except KeyError:
+                logger.error(
+                    f"Invalid species colour string '{colour_str}' "
+                    f"for species {token_id}: {item}"
+                )
+                continue  # Skip this species
+
             species = Species(
                 id=token_id,
                 museum_row=item["museum_row"],
                 museum_col=item["museum_col"],
-                kind=item["kind"],
-                colour=item["colour"],
+                kind=kind_enum,
+                colour=colour_enum,
             )
             species_data[token_id] = species
         except KeyError as e:
@@ -1115,64 +1322,6 @@ def load_species() -> dict[str, Species]:
 
     logger.info(f"Parsed {len(species_data)} species from species.json.")
     return species_data
-
-
-def load_starting_objectives_tiles() -> dict[int, ObjectiveTile]:
-    """Loads starting objective tile definitions."""
-    raw_data = _load_json("starting_objectives_tiles.json")
-    objective_data: dict[int, ObjectiveTile] = {}
-    if not isinstance(raw_data, list):
-        logger.error("starting_objectives_tiles.json top level is not a list")
-        raise TypeError("Expected list in starting_objectives_tiles.json")
-
-    for item in raw_data:
-        if not isinstance(item, dict):
-            logger.warning(
-                f"Skipping non-dict item in starting_objectives_tiles.json: {item}"
-            )
-            continue
-        try:
-            objective_id = item["objective_id"]
-            raw_reqs = item.get("requirements", [])
-            parsed_reqs: list[ObjectiveRequirement] = []
-            if isinstance(raw_reqs, list):
-                for req_item in raw_reqs:
-                    if isinstance(req_item, dict):
-                        req = ObjectiveRequirement(
-                            type=req_item["type"],
-                            color=req_item.get("color"),
-                            kind=req_item.get("kind"),
-                            count=req_item.get("count"),
-                            value=req_item.get("value"),
-                        )
-                        parsed_reqs.append(req)
-                    else:
-                        logger.warning(
-                            f"Skipping non-dict requirement in starting objective "
-                            f"{objective_id}: {req_item}"
-                        )
-            else:
-                logger.warning(
-                    f"'requirements' is not a list in starting objective "
-                    f"{objective_id}: {raw_reqs}"
-                )
-
-            # NOTE: We are reusing the ObjectiveTile dataclass.
-            # The 'type' field will correctly store "silver" or "gold" as per the JSON.
-            tile = ObjectiveTile(
-                id=objective_id, type=item["type"], requirements=parsed_reqs
-            )
-            objective_data[objective_id] = tile
-        except KeyError as e:
-            logger.error(f"Missing key {e} in starting objective tile item: {item}")
-        except Exception as e:
-            logger.error(f"Error parsing starting objective tile item {item}: {e}")
-
-    logger.info(
-        f"Parsed {len(objective_data)} starting objective tiles "
-        f"from starting_objectives_tiles.json."
-    )
-    return objective_data
 
 
 def load_theory_of_evolution_track() -> dict[int, TheoryTrackSpace]:
@@ -1225,14 +1374,38 @@ OCEAN_TRACK_DATA: dict[str, TrackSpace] = {}
 PERSONAL_BOARD_DATA: PersonalBoardDefinition | None = None  # Updated type hint
 SPECIAL_ACTION_TILES_DATA: dict[int, SpecialActionTile] = {}
 SPECIES_DATA: dict[str, Species] = {}
-STARTING_OBJECTIVES_TILES_DATA: dict[int, ObjectiveTile] = {}
 THEORY_OF_EVOLUTION_TRACK_DATA: dict[
     int, TheoryTrackSpace
 ] = {}  # Key by space_id (int)
 
 
-def load_all_data() -> None:
-    """Loads all static game data into module-level variables."""
+def load_all_data() -> dict[str, Any]:
+    """Loads all static game data and returns it in a dictionary."""
+    # Remove global declarations as we assign directly and return
+    # global \
+    #     ACADEMY_SCROLLS_DATA, ...
+
+    logger.info("Loading all static game data...")
+
+    # Load into local variables first
+    local_academy_scrolls = load_academy_scrolls()
+    local_beagles_goals = load_beagles_goals()
+    local_campsites = load_campsites()
+    local_correspondences = load_correspondences_tiles()
+    local_crew_cards = load_crew_cards()
+    local_island_a = load_island_track("A")
+    local_island_b = load_island_track("B")
+    local_island_c = load_island_track("C")
+    local_main_board_actions = load_main_board_actions()
+    local_objective_display = load_objective_display_area()
+    local_objective_tiles = load_objective_tiles()
+    local_ocean_tracks = load_ocean_tracks()
+    local_personal_board = load_personal_board()
+    local_special_tiles = load_special_action_tiles()
+    local_species = load_species()
+    local_theory_track = load_theory_of_evolution_track()
+
+    # Assign to module-level globals (for potential compatibility)
     global \
         ACADEMY_SCROLLS_DATA, \
         BEAGLES_GOALS_DATA, \
@@ -1249,32 +1422,67 @@ def load_all_data() -> None:
         PERSONAL_BOARD_DATA, \
         SPECIAL_ACTION_TILES_DATA, \
         SPECIES_DATA, \
-        STARTING_OBJECTIVES_TILES_DATA, \
         THEORY_OF_EVOLUTION_TRACK_DATA
 
-    logger.info("Loading all static game data...")
+    ACADEMY_SCROLLS_DATA = local_academy_scrolls
+    BEAGLES_GOALS_DATA = local_beagles_goals
+    CAMPSITES_DATA = local_campsites
+    CORRESPONDENCES_TILES_DATA = local_correspondences
+    CREW_CARDS_DATA = local_crew_cards
+    ISLAND_A_TRACK_DATA = local_island_a
+    ISLAND_B_TRACK_DATA = local_island_b
+    ISLAND_C_TRACK_DATA = local_island_c
+    MAIN_BOARD_ACTIONS_DATA = local_main_board_actions
+    OBJECTIVE_DISPLAY_AREA_DATA = local_objective_display
+    OBJECTIVE_TILES_DATA = local_objective_tiles
+    OCEAN_TRACK_DATA = local_ocean_tracks
+    PERSONAL_BOARD_DATA = local_personal_board
+    SPECIAL_ACTION_TILES_DATA = local_special_tiles
+    SPECIES_DATA = local_species
+    THEORY_OF_EVOLUTION_TRACK_DATA = local_theory_track
 
-    ACADEMY_SCROLLS_DATA = load_academy_scrolls()
-    BEAGLES_GOALS_DATA = load_beagles_goals()
-    CAMPSITES_DATA = load_campsites()
-    CORRESPONDENCES_TILES_DATA = load_correspondences_tiles()
-    CREW_CARDS_DATA = load_crew_cards()
-    ISLAND_A_TRACK_DATA = load_island_track("A")
-    ISLAND_B_TRACK_DATA = load_island_track("B")
-    ISLAND_C_TRACK_DATA = load_island_track("C")
-    MAIN_BOARD_ACTIONS_DATA = load_main_board_actions()
-    OBJECTIVE_DISPLAY_AREA_DATA = load_objective_display_area()  # Assign directly
-    OBJECTIVE_TILES_DATA = load_objective_tiles()
-    OCEAN_TRACK_DATA = load_ocean_tracks()
-    PERSONAL_BOARD_DATA = load_personal_board()
-    SPECIAL_ACTION_TILES_DATA = load_special_action_tiles()
-    SPECIES_DATA = load_species()
-    STARTING_OBJECTIVES_TILES_DATA = load_starting_objectives_tiles()
-    THEORY_OF_EVOLUTION_TRACK_DATA = load_theory_of_evolution_track()
+    # Log counts (using local vars)
+    logger.debug(f"Loaded {len(local_academy_scrolls)} academy scrolls.")
+    logger.debug(f"Loaded {len(local_beagles_goals)} Beagle goals.")
+    logger.debug(f"Loaded {len(local_campsites)} campsites.")
+    logger.debug(f"Loaded {len(local_correspondences)} correspondence tiles.")
+    logger.debug(f"Loaded {len(local_crew_cards)} crew cards.")
+    logger.debug(f"Loaded {len(local_island_a)} Island A track spaces.")
+    logger.debug(f"Loaded {len(local_island_b)} Island B track spaces.")
+    logger.debug(f"Loaded {len(local_island_c)} Island C track spaces.")
+    logger.debug(f"Loaded {len(local_main_board_actions)} main board actions.")
+    obj_display_loaded = "Yes" if local_objective_display else "No"
+    logger.debug(f"Loaded objective display area: {obj_display_loaded}")
+    logger.debug(f"Loaded {len(local_objective_tiles)} objective tiles.")
+    logger.debug(f"Loaded {len(local_ocean_tracks)} ocean track spaces.")
+    personal_board_loaded = "Yes" if local_personal_board else "No"
+    logger.debug(f"Loaded personal board definition: {personal_board_loaded}")
+    logger.debug(f"Loaded {len(local_special_tiles)} special action tiles.")
+    logger.debug(f"Loaded {len(local_species)} species.")
+    logger.debug(f"Loaded {len(local_theory_track)} theory track spaces.")
 
     logger.info("Finished loading all static game data.")
+
+    # Return dictionary of loaded data
+    return {
+        "academy_scrolls": local_academy_scrolls,
+        "beagles_goals": local_beagles_goals,
+        "campsites": local_campsites,
+        "correspondences_tiles": local_correspondences,
+        "crew_cards": local_crew_cards,
+        "island_a_track": local_island_a,
+        "island_b_track": local_island_b,
+        "island_c_track": local_island_c,
+        "main_board_actions": local_main_board_actions,
+        "objective_display_area": local_objective_display,
+        "objective_tiles": local_objective_tiles,
+        "ocean_track": local_ocean_tracks,
+        "personal_board": local_personal_board,
+        "special_action_tiles": local_special_tiles,
+        "species": local_species,
+        "theory_track": local_theory_track,
+    }
 
 
 # Optional: Load data automatically when the module is imported
 # load_all_data()
-# Consider if this is desired, or if loading should be explicitly triggered.

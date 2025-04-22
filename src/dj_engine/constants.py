@@ -15,6 +15,7 @@ class SealColor(str, Enum):
 
 class PlayerColor(str, Enum):
     """Represents the colors identifying players."""
+
     BLUE = "BLUE"
     GREEN = "GREEN"
     YELLOW = "YELLOW"
@@ -87,17 +88,22 @@ class ActionType(Enum):
     END_OF_ISLAND_BONUS = auto()  # From Island Track exit spaces
     COPY_CREW_CARD = auto()
     PERFORM_LOCKED_ACTION = auto()
+    # Added from crew card actions
+    CORRESPONDENCE_DISTRIBUTED = auto()
+    ESTABLISH_ANY_CAMPSITE = auto()
+    # Placeholder for special tile locations
+    PERFORM_SPECIAL_TILE_ACTION = auto()
     # TODO: Add any other action types discovered later
 
 
-class TrackType(Enum):
+class TrackType(str, Enum):
     """Represents the different types of tracks on the board."""
 
-    OCEAN = auto()
-    ISLAND_A = auto()
-    ISLAND_B = auto()
-    ISLAND_C = auto()
-    THEORY = auto()  # Theory of Evolution Track
+    OCEAN = "Ocean"
+    ISLAND_A = "Island A"
+    ISLAND_B = "Island B"
+    ISLAND_C = "Island C"
+    THEORY = "THEORY"
 
 
 class ObjectiveRequirementType(Enum):
@@ -125,4 +131,4 @@ class ObjectiveRequirementType(Enum):
 
 # --- Other Game Constants ---
 MAX_PLAYERS = 2  # As specified
-INITIAL_STAMP_COUNT = 4 # Rule 1/2A
+INITIAL_STAMP_COUNT = 4  # Rule 1/2A

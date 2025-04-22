@@ -1,0 +1,6 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+When implementing functions that modify the game state (especially within `@dj_engine/actions/`), prioritize functional updates where possible. The function should take the current `GameState` as input and ideally return a *new*, modified `GameState` object, rather than modifying the input object directly. Use `dataclasses.replace` for simple updates. If direct modification is necessary for performance or complexity reasons, ensure it is clearly documented. This is important for future AI integration using algorithms like MCTS.

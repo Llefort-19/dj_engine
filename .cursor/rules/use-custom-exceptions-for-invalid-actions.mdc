@@ -1,0 +1,6 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+When checking pre-conditions for an action within action functions (e.g., in `@dj_engine/actions/`), if the action is determined to be illegal (insufficient resources, invalid target, unmet requirements), raise a custom exception like `InvalidActionError("Reason for failure")` instead of returning `None` or a boolean. Define custom exception classes (e.g., `InvalidActionError`, `InsufficientResourcesError`) probably in `@dj_engine/exceptions.py`.

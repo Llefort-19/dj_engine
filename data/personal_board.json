@@ -58,21 +58,25 @@
       { "slot_id": "SILVER_1", "type": "SILVER", "position": 1, "placement_cost": 0, "reward_action": [{ "type": "OBJECTIVE_REACTIVATE_TENT", "timing": "IMMEDIATE" }, { "type": "GAIN_VP", "value":1, "timing": "ENDGAME"}] },
       { "slot_id": "SILVER_2", "type": "SILVER", "position": 2, "placement_cost": 0, "reward_action": [{ "type": "OBJECTIVE_FREE_ACADEMY_SCROLL", "timing": "PASSIVE"}, { "type": "GAIN_VP", "value":1, "timing": "ENDGAME"}] },
       { "slot_id": "SILVER_3", "type": "SILVER", "position": 3, "placement_cost": 0, "reward_action": [{ "type": "OBJECTIVE_RESEARCH_ON_EXPLORER_ISLAND", "timing": "IMMEDIATE"}, { "type": "GAIN_VP", "value":2, "timing": "ENDGAME"}] },
-      { "slot_id": "SILVER_4", "type": "SILVER", "position": 4, "placement_cost": 1, "reward_action": [{ "type": "OBJECTIVE_ADD_BOOK_MULTIPLIER", "value": 1, "timing": "ENDGAME"}, { "type": "GAIN_VP", "value":2, "timing": "ENDGAME"}] },
-      { "slot_id": "SILVER_5", "type": "SILVER", "position": 5, "placement_cost": 1, "reward_action": [{ "type": "GAIN_VP", "value":5, "timing": "ENDGAME"}] },
+      { "slot_id": "SILVER_4", "type": "SILVER", "position": 4, "placement_cost": 0, "reward_action": [{ "type": "OBJECTIVE_ADD_BOOK_MULTIPLIER", "value": 1, "timing": "ENDGAME"}, { "type": "GAIN_VP", "value":2, "timing": "ENDGAME"}] },
+      { "slot_id": "SILVER_5", "type": "SILVER", "position": 5, "placement_cost": 0, "reward_action": [{ "type": "GAIN_VP", "value":5, "timing": "ENDGAME"}] },
   
       {"comment": "Golden Objectives (Left to Right)"},
-      { "slot_id": "GOLDEN_1", "type": "GOLDEN", "position": 1, "placement_cost": 0, "reward_action": [{ "type": "OBJECTIVE_UNLOCK_WORKER_5", "timing": "IMMEDIATE"}, { "type": "GAIN_VP", "value":4, "timing": "ENDGAME"}] },
-      { "slot_id": "GOLDEN_2", "type": "GOLDEN", "position": 2, "placement_cost": 0, "reward_action": [{ "type": "OBJECTIVE_GAIN_PURPLE_WAX_SEAL", "timing": "IMMEDIATE"}, { "type": "GAIN_VP", "value":4, "timing": "ENDGAME"}] },
+      { "slot_id": "GOLDEN_1", "type": "GOLDEN", "position": 1, "placement_cost": 5, "reward_action": [{ "type": "OBJECTIVE_UNLOCK_WORKER_5", "timing": "IMMEDIATE"}, { "type": "GAIN_VP", "value":4, "timing": "ENDGAME"}] },
+      { "slot_id": "GOLDEN_2", "type": "GOLDEN", "position": 2, "placement_cost": 3, "reward_action": [{ "type": "OBJECTIVE_GAIN_PURPLE_WAX_SEAL", "timing": "IMMEDIATE"}, { "type": "GAIN_VP", "value":4, "timing": "ENDGAME"}] },
       { "slot_id": "GOLDEN_3", "type": "GOLDEN", "position": 3, "placement_cost": 0, "reward_action": [{ "type": "OBJECTIVE_REDUCE_DIARY_PENALTY", "value": 1, "timing": "PASSIVE"}, { "type": "GAIN_VP", "value":2, "timing": "ENDGAME"}] },
-      { "slot_id": "GOLDEN_4", "type": "GOLDEN", "position": 4, "placement_cost": 1, "reward_action": [{ "type": "OBJECTIVE_MAX_LAG_PENALTY", "value": 2, "timing": "PASSIVE"}, { "type": "GAIN_VP", "value":4, "timing": "ENDGAME"}] },
-      { "slot_id": "GOLDEN_5", "type": "GOLDEN", "position": 5, "placement_cost": 1, "reward_action": [{ "type": "GAIN_VP", "value": 8, "timing": "ENDGAME"}] }
+      { "slot_id": "GOLDEN_4", "type": "GOLDEN", "position": 4, "placement_cost": 0, "reward_action": [{ "type": "OBJECTIVE_MAX_LAG_PENALTY", "value": 2, "timing": "PASSIVE"}, { "type": "GAIN_VP", "value":4, "timing": "ENDGAME"}] },
+      { "slot_id": "GOLDEN_5", "type": "GOLDEN", "position": 5, "placement_cost": 0, "reward_action": [{ "type": "GAIN_VP", "value": 8, "timing": "ENDGAME"}] }
     ],
     "objective_pair_bonus": {
       "condition": ["SILVER_5", "GOLDEN_5"],
           "reward_action": { "type": "GAIN_VP", "value": 4, "timing": "ENDGAME"}
     },
-  
+   "reserve_objective_slots": [
+      {"comment": "2 Objective tiles can be placed in a player reserve."},
+      { "slot_id": "RESERVE_1", "type": "RESERVE", "position": 1, "placement_cost": 0},
+      { "slot_id": "RESERVE_2", "type": "RESERVE", "position": 2, "placement_cost": 0}
+   ],
     "tent_slots": [
       { "slot_index": 0, "revealed_action": { } },
       { "slot_index": 1, "revealed_action": { "type": "GAIN_COINS", "value": 2 } },

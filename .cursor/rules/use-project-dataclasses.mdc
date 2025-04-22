@@ -1,0 +1,11 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+When generating Python code for data structures representing game entities (like actions, board locations, player state, game state, etc.), always use the `dataclasses` module unless otherwise specified. Reference existing dataclasses in the project (e.g., `ActionInfo`, `GameState`, `PlayerState`) where applicable. Ensure appropriate type hints from the `typing` module are used. For mutable default arguments like lists or dicts, use `field(default_factory=...)`.
+Example Base Classes (check files for exact fields):
+- `@dj_engine/data_loader.py` (for loaded static data like `BoardActionLocation`, `SpeciesInfo`, `ObjectiveTile`, etc.)
+- `@dj_engine/player.py` (for dynamic player state like `WorkerState`, `PlayerState`)
+- `@dj_engine/game_state.py` (for the overall `GameState`)
+- `@dj_engine/constants.py` (for Enums)

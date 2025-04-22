@@ -1,0 +1,6 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+All function signatures and variable declarations should include comprehensive type hints using the `typing` module. Ensure generated code is compatible with the strict `mypy` configuration defined in `pyproject.toml`. Prioritize clarity and correctness in types.

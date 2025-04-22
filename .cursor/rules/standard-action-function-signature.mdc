@@ -1,0 +1,8 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+Functions implementing specific player actions (e.g., in `@dj_engine/actions/`) should generally follow the signature:
+`def perform_action_X(game_state: GameState, player_index: int, **kwargs) -> GameState:`
+Where `kwargs` includes necessary parameters like `worker_id`, `location_id`, `target_id`, `choice`, etc., specific to the action. Always include type hints. The function should handle pre-condition checks (cost, validity, requirements) and return the updated game state.

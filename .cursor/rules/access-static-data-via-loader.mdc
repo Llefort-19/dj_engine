@@ -1,0 +1,6 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+Static game data defined in the JSON files should always be accessed via the central loaded data structures, likely managed by `@dj_engine/data_loader.py`. Do not hardcode values like action costs, VP rewards, or track connections directly into game logic functions. Assume static data (e.g., MAIN_BOARD_ACTIONS_DATA, SPECIES_DATA) is available globally or passed via a context object.

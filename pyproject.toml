@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Darwin's Journey Game Engine"  # Added a placeholder description
 authors = ["Your Name <your.email@example.com>"] # <-- TODO: Replace with your actual name and email
 readme = "README.md"
-packages = [{include = "dj_engine"}]
+packages = [{include = "dj_engine", from="src"}]
 
 [tool.poetry.dependencies]
 python = "^3.13"
@@ -28,7 +28,9 @@ build-backend = "poetry.core.masonry.api"
 # Match the target Python version
 target-version = "py313"
 line-length = 88
+
 # Select common rulesets: pyflakes, pycodestyle, isort, pyupgrade, etc.
+[tool.ruff.lint] 
 select = ["E", "F", "W", "I", "UP"]
 ignore = []
 
@@ -38,10 +40,20 @@ ignore = []
 # [tool.ruff.isort] # Optional: Configure import sorting if needed
 
 [tool.mypy]
-python_version = "3.13"
-warn_unused_configs = true
-# Strict checking options
+# python_version = "3.13"
+# warn_unused_configs = true
 strict = true
+# Removed mypy_path and files directives
+
+
+# --- Ensure others that might conflict are OFF for this test ---
+# packages = ["dj_engine"] # Comment out or remove
+# package_root = "src" # Comment out or remove
+# mypy_path = "src" # Comment out or remove
+# namespace_packages = false # Explicitly disable for Mypy's view
+# explicit_package_bases = false # Turn off if potentially conflicting
+
+
 # You might need to ignore missing imports for some libraries initially
 # ignore_missing_imports = true
 

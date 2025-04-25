@@ -17,6 +17,7 @@ pytest = "^8.3.5"
 hypothesis = "^6.131.6"
 ruff = "^0.11.6"
 mypy = "^1.15.0"
+pytest-mock = "^3.14.0"
 
 [build-system]
 requires = ["poetry-core"]
@@ -40,9 +41,11 @@ ignore = []
 # [tool.ruff.isort] # Optional: Configure import sorting if needed
 
 [tool.mypy]
-# python_version = "3.13"
-# warn_unused_configs = true
+python_version = "3.13"
+warn_unused_configs = true
 strict = true
+mypy_path = "src" # Specify the source root for imports
+# explicit_package_bases = true # Force module discovery relative to mypy_path
 # Removed mypy_path and files directives
 
 
@@ -56,6 +59,11 @@ strict = true
 
 # You might need to ignore missing imports for some libraries initially
 # ignore_missing_imports = true
+
+# [[tool.mypy.overrides]] # Removed specific tests.* override
+# module = "tests.*"
+# follow_imports = "skip" # Don't follow imports within tests
+# ignore_errors = true # Optional: suppress errors within tests for now
 
 # [[tool.mypy.overrides]]
 # module = [
@@ -73,3 +81,4 @@ testpaths = [
     # If you created your project with --src, use this instead:
     # "tests", "src"
 ]
+# pythonpath = [\"src\"] # Temporarily disabled for mypy debugging

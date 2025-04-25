@@ -19,6 +19,7 @@ class WorkerState:
     seal_slots_filled: int = 0  # How many physical slots are covered by seals
     # ID of the crew card achieved by this worker
     assigned_crew_card_id: int | None = None
+    is_placed: bool = False  # Is the worker currently on the main board?
 
 
 @dataclass

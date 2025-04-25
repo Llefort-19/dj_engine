@@ -87,7 +87,7 @@ def setup_game() -> GameState:
         "SPECIAL_ACTION_BR",
     ]
     # Access via returned data
-    all_special_tiles = list(all_game_data["special_action_tiles"].values())
+    all_special_tiles = list(all_game_data.special_action_tiles.values())
     random.shuffle(all_special_tiles)
     # Assign the first 6 shuffled tiles to the defined locations
     game_state.special_action_tiles_setup = {
@@ -101,7 +101,7 @@ def setup_game() -> GameState:
 
     # Rule 10: Correspondence Setup
     # Access via returned data
-    all_correspondence_tiles = list(all_game_data["correspondences_tiles"].values())
+    all_correspondence_tiles = list(all_game_data.correspondences_tiles.values())
     random.shuffle(all_correspondence_tiles)
     game_state.correspondence_tiles_in_play = all_correspondence_tiles[:3]
     # Initialize stamp tracking: {tile_index: {player_index: stamp_count}}
@@ -135,7 +135,7 @@ def setup_game() -> GameState:
 
     # Rule 9: Objective Setup
     # Access via returned data
-    all_objective_tiles = list(all_game_data["objective_tiles"].values())
+    all_objective_tiles = list(all_game_data.objective_tiles.values())
     random.shuffle(all_objective_tiles)
 
     # Filter all objectives into starting and main piles based on the 'starting' flag
@@ -205,10 +205,10 @@ def setup_game() -> GameState:
     # Access via returned data
     eligible_track_spaces: list[str] = []
     all_track_data_sources = [
-        all_game_data["island_a_track"],
-        all_game_data["island_b_track"],
-        all_game_data["island_c_track"],
-        all_game_data["ocean_track"],
+        all_game_data.island_a_track,
+        all_game_data.island_b_track,
+        all_game_data.island_c_track,
+        all_game_data.ocean_track,
     ]
     for track_data in all_track_data_sources:
         for track_space in track_data.values():
@@ -221,7 +221,7 @@ def setup_game() -> GameState:
 
     # (Shuffle Specimens)
     # Access via returned data
-    species_data = all_game_data["species"]
+    species_data = all_game_data.species
     all_specimen_token_ids = list(species_data.keys())
     random.shuffle(all_specimen_token_ids)
 
@@ -247,13 +247,13 @@ def setup_game() -> GameState:
     # Rule 8: Museum Setup (Partially handled by specimen leftovers above)
 
     # Rule 15: Beagle Goal Setup (Added)
-    all_beagle_goals = list(all_game_data["beagles_goals"].values())
+    all_beagle_goals = list(all_game_data.beagles_goals.values())
     random.shuffle(all_beagle_goals)
     game_state.beagle_goals_in_play = all_beagle_goals[:5]
     game_state.beagle_goals_completed = [False] * 5  # Initialize completion tracking
 
     # --- Simplified Crew Card Dealing & Starting Seal Placement ---
-    all_crew_cards = list(all_game_data["crew_cards"].values())
+    all_crew_cards = list(all_game_data.crew_cards.values())
     random.shuffle(all_crew_cards)
 
     dealt_card_index = 0

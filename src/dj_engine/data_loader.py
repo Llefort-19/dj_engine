@@ -1398,6 +1398,29 @@ def load_theory_of_evolution_track() -> dict[int, TheoryTrackSpace]:
     return track_data
 
 
+# --- Dataclass to hold all loaded static data ---
+@dataclass
+class AllGameData:
+    """Encapsulates all loaded static game data."""
+
+    academy_scrolls: dict[int, AcademyScroll]
+    beagles_goals: dict[int, BeagleGoal]
+    campsites: dict[str, Campsite]
+    correspondences_tiles: dict[int, CorrespondenceTile]
+    crew_cards: dict[int, CrewCard]
+    island_a_track: dict[str, TrackSpace]
+    island_b_track: dict[str, TrackSpace]
+    island_c_track: dict[str, TrackSpace]
+    main_board_actions: dict[str, BoardActionLocation]
+    objective_display_area: ObjectiveDisplayAreaInfo | None
+    objective_tiles: dict[int, ObjectiveTile]
+    ocean_track: dict[str, TrackSpace]
+    personal_board: PersonalBoardDefinition | None
+    special_action_tiles: dict[int, SpecialActionTile]
+    species: dict[str, Species]
+    theory_track: dict[int, TheoryTrackSpace]
+
+
 # --- Module-level Data Storage (Example) ---
 
 # Using module-level variables for now. Could be encapsulated in a class later.
@@ -1423,8 +1446,8 @@ THEORY_OF_EVOLUTION_TRACK_DATA: dict[
 ] = {}  # Key by space_id (int)
 
 
-def load_all_data() -> dict[str, Any]:
-    """Loads all static game data and returns it in a dictionary."""
+def load_all_data() -> AllGameData:
+    """Loads all static game data and returns it in an AllGameData instance."""
     # Remove global declarations as we assign directly and return
     # global \
     #     ACADEMY_SCROLLS_DATA, ...
@@ -1507,25 +1530,25 @@ def load_all_data() -> dict[str, Any]:
 
     logger.info("Finished loading all static game data.")
 
-    # Return dictionary of loaded data
-    return {
-        "academy_scrolls": local_academy_scrolls,
-        "beagles_goals": local_beagles_goals,
-        "campsites": local_campsites,
-        "correspondences_tiles": local_correspondences,
-        "crew_cards": local_crew_cards,
-        "island_a_track": local_island_a,
-        "island_b_track": local_island_b,
-        "island_c_track": local_island_c,
-        "main_board_actions": local_main_board_actions,
-        "objective_display_area": local_objective_display,
-        "objective_tiles": local_objective_tiles,
-        "ocean_track": local_ocean_tracks,
-        "personal_board": local_personal_board,
-        "special_action_tiles": local_special_tiles,
-        "species": local_species,
-        "theory_track": local_theory_track,
-    }
+    # Return instance of AllGameData dataclass
+    return AllGameData(
+        academy_scrolls=local_academy_scrolls,
+        beagles_goals=local_beagles_goals,
+        campsites=local_campsites,
+        correspondences_tiles=local_correspondences,
+        crew_cards=local_crew_cards,
+        island_a_track=local_island_a,
+        island_b_track=local_island_b,
+        island_c_track=local_island_c,
+        main_board_actions=local_main_board_actions,
+        objective_display_area=local_objective_display,
+        objective_tiles=local_objective_tiles,
+        ocean_track=local_ocean_tracks,
+        personal_board=local_personal_board,
+        special_action_tiles=local_special_tiles,
+        species=local_species,
+        theory_track=local_theory_track,
+    )
 
 
 # Optional: Load data automatically when the module is imported

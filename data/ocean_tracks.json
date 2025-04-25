@@ -53,7 +53,7 @@
       "silver_banner": false,
       "beagle_goal": false,
       "actions": [
-        { "type": "CAMP" }
+        { "type": "ESTABLISH_CAMPSITE", "location": "CAMP_AREA_O6" }
       ],
       "has_specimen": false,
       "next": ["O7"]
@@ -106,7 +106,7 @@
       "silver_banner": false,
       "beagle_goal": false,
       "actions": [
-        { "type": "CAMP" }
+        { "type": "ESTABLISH_CAMPSITE", "location": "CAMP_AREA_O12" }
       ],
       "has_specimen": false,
       "next": ["O13"]
@@ -168,7 +168,7 @@
       "silver_banner": false,
       "beagle_goal": false,
       "actions": [
-        { "type": "CAMP" }
+        { "type": "ESTABLISH_CAMPSITE", "location": "CAMP_AREA_O19" }
       ],
       "has_specimen": false,
       "next": ["O20", "O21"]

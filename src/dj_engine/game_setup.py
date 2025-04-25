@@ -63,6 +63,11 @@ def setup_game() -> GameState:
 
     game_state.players = player_states
 
+    # --- Rule 12/13: Place Starting Explorers ---
+    for player_state in game_state.players:
+        player_state.explorers_placed["A"] = "IA0"  # Place on Island A start
+        player_state.explorers_available -= 1  # Use one explorer
+
     # --- Rule 1/2B: Determine First Player & Turn Order ---
     # For now, simple sequential order starting from index 0
     # TODO: Implement random first player and clockwise order later if needed
@@ -134,25 +139,31 @@ def setup_game() -> GameState:
     random.shuffle(all_objective_tiles)
 
     # Filter all objectives into starting and main piles based on the 'starting' flag
-    starting_objectives = [obj for obj in all_objective_tiles if obj.starting]
+    starting_objectives = [
+        obj for obj in all_objective_tiles if obj.starting
+    ]  # Reverted to list comp
+
     main_objectives = [obj for obj in all_objective_tiles if not obj.starting]
 
     # Populate main decks (from non-starting objectives)
     game_state.objective_deck_silver = [
-        obj for obj in main_objectives if obj.type == "silver"
+        obj
+        for obj in main_objectives
+        if obj.type == "SILVER"  # Uppercase
     ]
     game_state.objective_deck_gold = [
-        obj for obj in main_objectives if obj.type == "gold"
+        obj
+        for obj in main_objectives
+        if obj.type == "GOLD"  # Uppercase
     ]
 
     # Filter starting objectives by type
-    starting_silver = [obj for obj in starting_objectives if obj.type == "silver"]
-    starting_gold = [obj for obj in starting_objectives if obj.type == "gold"]
-    print(f"DEBUG: Found {len(starting_silver)} starting silver objectives.")
-    print(f"DEBUG: Found {len(starting_gold)} starting gold objectives.")
-    # Shuffling already happened on the combined list, no need to reshuffle here
-    # random.shuffle(starting_silver) # Removed
-    # random.shuffle(starting_gold) # Removed
+    starting_silver = [
+        obj for obj in starting_objectives if obj.type == "SILVER"
+    ]  # Uppercase
+    starting_gold = [
+        obj for obj in starting_objectives if obj.type == "GOLD"
+    ]  # Uppercase
 
     # Assign starting objectives
     # (Deals first available pair, one silver/one gold if possible)
@@ -234,9 +245,51 @@ def setup_game() -> GameState:
 
     # Rule 3: Place HMS Beagle (Already defaulted in GameState)
     # Rule 8: Museum Setup (Partially handled by specimen leftovers above)
-    # Rule 11: Beagle Goal Setup
 
-    # Return the partially initialized game state
+    # Rule 15: Beagle Goal Setup (Added)
+    all_beagle_goals = list(all_game_data["beagles_goals"].values())
+    random.shuffle(all_beagle_goals)
+    game_state.beagle_goals_in_play = all_beagle_goals[:5]
+    game_state.beagle_goals_completed = [False] * 5  # Initialize completion tracking
+
+    # --- Simplified Crew Card Dealing & Starting Seal Placement ---
+    all_crew_cards = list(all_game_data["crew_cards"].values())
+    random.shuffle(all_crew_cards)
+
+    dealt_card_index = 0
+    for i in range(player_count):
+        player_state = game_state.players[i]
+        cards_dealt_to_player = []
+
+        # Deal 3 cards
+        for card_deal_num in range(3):
+            if dealt_card_index < len(all_crew_cards):
+                card = all_crew_cards[dealt_card_index]
+                cards_dealt_to_player.append(card)
+                player_state.crew_cards_assigned_starting.append(card.id)
+
+                # Apply starting seal to corresponding worker (0, 1, 2)
+                if card_deal_num < len(player_state.workers):
+                    worker = player_state.workers[card_deal_num]
+                    seal_color = card.starting_seal_color
+
+                    # Add seal to worker seals dict
+                    worker.seals[seal_color] = worker.seals.get(seal_color, 0) + 1
+                    worker.seal_slots_filled += 1
+                else:
+                    # Should not happen with 3 cards and 4+ workers
+                    print(
+                        f"Warn: Cannot assign seal from card {card.id} to worker "
+                        f"{card_deal_num} for player {i} (worker not found)"
+                    )
+
+                dealt_card_index += 1
+            else:
+                # Should not happen with enough crew cards
+                print(f"Warning: Ran out of crew cards to deal to player {i}")
+                break  # Stop dealing to this player if out of cards
+
+    # Return the initialized game state
     return game_state
 
 

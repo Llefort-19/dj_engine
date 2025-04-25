@@ -16,7 +16,7 @@
           { "slot_index": 2, "placement_cost": 1 },
           { "slot_index": 3, "placement_cost": 1, "distinction_trigger": "SILVER" },
           { "slot_index": 4, "placement_cost": 2, "reward_action": { "type": "GAIN_VP", "value":3, "timing": "ENDGAME"}},
-          { "slot_index": 5, "placement_cost": 3, "distinction_trigger": "GOLDEN", "reward_action": { "type": "GAIN_VP", "value":7, "timing": "ENDGAME"}}
+          { "slot_index": 5, "placement_cost": 3, "distinction_trigger": "GOLD", "reward_action": { "type": "GAIN_VP", "value":7, "timing": "ENDGAME"}}
         ]
       },
       {
@@ -29,7 +29,7 @@
           { "slot_index": 2, "placement_cost": 1 },
           { "slot_index": 3, "placement_cost": 1, "distinction_trigger": "SILVER" },
           { "slot_index": 4, "placement_cost": 2, "reward_action": { "type": "GAIN_VP", "value":3, "timing": "ENDGAME"}},
-          { "slot_index": 5, "placement_cost": 3, "distinction_trigger": "GOLDEN", "reward_action": { "type": "GAIN_VP", "value":7, "timing": "ENDGAME"}}
+          { "slot_index": 5, "placement_cost": 3, "distinction_trigger": "GOLD", "reward_action": { "type": "GAIN_VP", "value":7, "timing": "ENDGAME"}}
         ]
       },
       {
@@ -42,7 +42,7 @@
           { "slot_index": 2, "placement_cost": 1 },
           { "slot_index": 3, "placement_cost": 1, "distinction_trigger": "SILVER" },
           { "slot_index": 4, "placement_cost": 2, "reward_action": { "type": "GAIN_VP", "value":3, "timing": "ENDGAME"}},
-          { "slot_index": 5, "placement_cost": 3, "distinction_trigger": "GOLDEN", "reward_action": { "type": "GAIN_VP", "value":7, "timing": "ENDGAME"}}
+          { "slot_index": 5, "placement_cost": 3, "distinction_trigger": "GOLD", "reward_action": { "type": "GAIN_VP", "value":7, "timing": "ENDGAME"}}
         ]
       },
        {
@@ -61,15 +61,15 @@
       { "slot_id": "SILVER_4", "type": "SILVER", "position": 4, "placement_cost": 0, "reward_action": [{ "type": "OBJECTIVE_ADD_BOOK_MULTIPLIER", "value": 1, "timing": "ENDGAME"}, { "type": "GAIN_VP", "value":2, "timing": "ENDGAME"}] },
       { "slot_id": "SILVER_5", "type": "SILVER", "position": 5, "placement_cost": 0, "reward_action": [{ "type": "GAIN_VP", "value":5, "timing": "ENDGAME"}] },
   
-      {"comment": "Golden Objectives (Left to Right)"},
-      { "slot_id": "GOLDEN_1", "type": "GOLDEN", "position": 1, "placement_cost": 5, "reward_action": [{ "type": "OBJECTIVE_UNLOCK_WORKER_5", "timing": "IMMEDIATE"}, { "type": "GAIN_VP", "value":4, "timing": "ENDGAME"}] },
-      { "slot_id": "GOLDEN_2", "type": "GOLDEN", "position": 2, "placement_cost": 3, "reward_action": [{ "type": "OBJECTIVE_GAIN_PURPLE_WAX_SEAL", "timing": "IMMEDIATE"}, { "type": "GAIN_VP", "value":4, "timing": "ENDGAME"}] },
-      { "slot_id": "GOLDEN_3", "type": "GOLDEN", "position": 3, "placement_cost": 0, "reward_action": [{ "type": "OBJECTIVE_REDUCE_DIARY_PENALTY", "value": 1, "timing": "PASSIVE"}, { "type": "GAIN_VP", "value":2, "timing": "ENDGAME"}] },
-      { "slot_id": "GOLDEN_4", "type": "GOLDEN", "position": 4, "placement_cost": 0, "reward_action": [{ "type": "OBJECTIVE_MAX_LAG_PENALTY", "value": 2, "timing": "PASSIVE"}, { "type": "GAIN_VP", "value":4, "timing": "ENDGAME"}] },
-      { "slot_id": "GOLDEN_5", "type": "GOLDEN", "position": 5, "placement_cost": 0, "reward_action": [{ "type": "GAIN_VP", "value": 8, "timing": "ENDGAME"}] }
+      {"comment": "Gold Objectives (Left to Right)"},
+      { "slot_id": "GOLD_1", "type": "GOLD", "position": 1, "placement_cost": 5, "reward_action": [{ "type": "OBJECTIVE_UNLOCK_WORKER_5", "timing": "IMMEDIATE"}, { "type": "GAIN_VP", "value":4, "timing": "ENDGAME"}] },
+      { "slot_id": "GOLD_2", "type": "GOLD", "position": 2, "placement_cost": 3, "reward_action": [{ "type": "OBJECTIVE_GAIN_PURPLE_WAX_SEAL", "timing": "IMMEDIATE"}, { "type": "GAIN_VP", "value":4, "timing": "ENDGAME"}] },
+      { "slot_id": "GOLD_3", "type": "GOLD", "position": 3, "placement_cost": 0, "reward_action": [{ "type": "OBJECTIVE_REDUCE_DIARY_PENALTY", "value": 1, "timing": "PASSIVE"}, { "type": "GAIN_VP", "value":2, "timing": "ENDGAME"}] },
+      { "slot_id": "GOLD_4", "type": "GOLD", "position": 4, "placement_cost": 0, "reward_action": [{ "type": "OBJECTIVE_MAX_LAG_PENALTY", "value": 2, "timing": "PASSIVE"}, { "type": "GAIN_VP", "value":4, "timing": "ENDGAME"}] },
+      { "slot_id": "GOLD_5", "type": "GOLD", "position": 5, "placement_cost": 0, "reward_action": [{ "type": "GAIN_VP", "value": 8, "timing": "ENDGAME"}] }
     ],
     "objective_pair_bonus": {
-      "condition": ["SILVER_5", "GOLDEN_5"],
+      "condition": ["SILVER_5", "GOLD_5"],
           "reward_action": { "type": "GAIN_VP", "value": 4, "timing": "ENDGAME"}
     },
    "reserve_objective_slots": [
@@ -81,12 +81,12 @@
       { "slot_index": 0, "revealed_action": { } },
       { "slot_index": 1, "revealed_action": { "type": "GAIN_COINS", "value": 2 } },
       { "slot_index": 2, "revealed_action": { "type": "CHOICE", "options": [ { "type": "NAVIGATE", "value": 1 }, { "type": "EXPLORE", "value": 1 } ] } },
-      { "slot_index": 3, "revealed_action": { "type": "CHOICE", "options": [ { "type": "CORRESPONDENCE", "value": 1 }, { "type": "ACADEMY", "cost_modifier": -2  } ] } },
+      { "slot_index": 3, "revealed_action": { "type": "CHOICE", "options": [ { "type": "CORRESPONDENCE", "value": 1 }, { "type": "ACADEMY", "cost_delta": -2  } ] } },
       { "slot_index": 4, "revealed_action": { "type": "GAIN_VP", "value": 5, "timing": "ENDGAME"}}
     ],
     "stamp_slots": [
         { "slot_index": 0, "revealed_action": { "type": "EXPLORE", "value": 2 } },
-        { "slot_index": 1, "revealed_action": { "type": "ACADEMY", "cost_modifier": -2 } },
+        { "slot_index": 1, "revealed_action": { "type": "ACADEMY", "cost_delta": -2 } },
         { "slot_index": 2, "revealed_action": { "type": "NAVIGATE", "value": 2 } }
     ],
     "specimen_grid_slots": [

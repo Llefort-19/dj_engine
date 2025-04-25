@@ -75,9 +75,8 @@ def test_load_initial_data() -> None:
     assert isinstance(green_reptile, Species), (
         "Species data item should be of type Species"
     )
-    # TODO: Update kind check when SpecimenKind Enum is created
-    assert green_reptile.kind == "REPTILE", "Species kind attribute check"
-    assert green_reptile.colour == "GREEN", "Species colour attribute check"
+    assert green_reptile.kind == SpecimenKind.REPTILE
+    assert green_reptile.color == SealColor.GREEN
     assert green_reptile.museum_row == "A", "Species museum_row attribute check"
     assert green_reptile.museum_col == 1, "Species museum_col attribute check"
 
@@ -155,8 +154,9 @@ def test_load_initial_data() -> None:
     assert len(card_5.achieved_actions) == 1
     action_info_5 = card_5.achieved_actions[0]
     assert action_info_5.type == ActionType.UNLOCK_LENS
-    # Checks if cost_modifier was correctly assigned to value
-    assert action_info_5.value == "FREE"
+    # Checks if cost_modifier: "FREE" was correctly parsed to cost: 0
+    assert action_info_5.cost == 0
+    assert action_info_5.value is None
 
     # --- Objective Tile Data Assertions ---
     assert objective_tile_data, "Objective tile data should not be empty"
@@ -372,7 +372,11 @@ def test_load_initial_data() -> None:
     camp_ia14 = campsite_data["CAMP_AREA_IA14"]
     assert camp_ia14.track_type == TrackType.ISLAND_A
     assert camp_ia14.tent_slots[0].placement_cost == 1
-    assert camp_ia14.actions_on_placement[0].type == ActionType.GAIN_SEAL_ANY_FREE
+    assert len(camp_ia14.actions_on_placement) == 1  # Should only have one action now
+    action_camp_ia14 = camp_ia14.actions_on_placement[0]
+    assert action_camp_ia14.type == ActionType.GAIN_SEAL  # Updated ActionType
+    assert action_camp_ia14.color == "ANY"  # Check specific fields
+    assert action_camp_ia14.cost == 0
 
     # --- Beagle Goals Data Assertions ---
     assert beagle_goals_data, "Beagle goals data should not be empty"
@@ -455,13 +459,13 @@ def test_load_initial_data() -> None:
     assert action_5.value[0]["type"] == "GAIN_COINS"
     assert action_5.value[0]["value"] == 7
 
-    # Check tile 7 with cost_modifier
+    # Check tile 7 with previous cost_modifier: "FREE"
     tile_7 = special_action_tiles_data[7]
-    assert len(tile_7.actions) == 2
-    assert tile_7.actions[0].type == ActionType.GAIN_SEAL_SPECIAL
-    assert tile_7.actions[0].value == "FREE"
-    assert tile_7.actions[1].type == ActionType.GAIN_COINS
-    assert tile_7.actions[1].value == 1
+    assert len(tile_7.actions) == 1  # GAIN_COINS action removed from json
+    assert tile_7.actions[0].type == ActionType.GAIN_PURPLE_WAX_SEAL  # Updated type
+    assert tile_7.actions[0].cost == 0  # Check cost is 0
+    # assert tile_7.actions[1].type == ActionType.GAIN_COINS # Action removed
+    # assert tile_7.actions[1].value == 1 # Action removed
 
     # --- Personal Board Data Assertions ---
     assert personal_board_data, "Personal board data should not be None"

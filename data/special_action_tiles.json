@@ -1,64 +1,64 @@
 [
     {
       "tile_id": 1,
-      "requirements": {},
-      "actions": [ { "type": "AUTO_FULFILL_OBJECTIVE" } ]
+      "requirements": {"YELLOW": 2, "RED": 2},
+      "actions": [ { "type": "GAIN_OBJECTIVE", "value": 1 }, { "type": "AUTO_FULFILL_OBJECTIVE" } ]
     },
     {
       "tile_id": 2,
-      "requirements": {},
+      "requirements": {"GREEN": 1, "BLUE": 1},
       "actions": [ { "type": "GAIN_COINS", "value": 3 }, { "type": "GAIN_TEMP_KNOWLEDGE", "value": 1 } ]
     },
     {
       "tile_id": 3,
-      "requirements": {},
-      "actions": [ { "type": "REPEAT_DELIVERY" } ]
+      "requirements": {"YELLOW": 1, "RED": 1	},
+      "actions": [ { "type": "DELIVER_SPECIMEN", "repeat": true } ]
     },
     {
       "tile_id": 4,
-      "requirements": {},
-      "actions": [ { "type": "PLACE_EXPLORER" } ]
+      "requirements": {"YELLOW": 1, "BLUE": 2	},
+      "actions": [ { "type": "PLACE_EXPLORER", "location": "START_OF_NEW_ISLAND" } ]
     },
     {
       "tile_id": 5,
-      "requirements": {},
+      "requirements": {"GREEN": 1, "RED": 1},
       "actions": [
          { "choice_source": "CONVERT_TEMP_KNOWLEDGE", "type": "CHOICE", "options": [ { "type": "GAIN_COINS", "value": 7 }, { "type": "GAIN_VP", "value": 7 } ] }
       ]
     },
     {
       "tile_id": 6,
-      "requirements": {},
+      "requirements": {"YELLOW": 2, "GREEN": 2},
       "actions": [ { "type": "RESEARCH_ANY_SPECIMEN" } ]
     },
     {
       "tile_id": 7,
-      "requirements": {},
-      "actions": [ { "type": "GAIN_SEAL_SPECIAL", "cost_modifier": "FREE" }, {"type":"GAIN_COINS", "value":1} ]
+      "requirements": {"RED": 2, "BLUE": 1},
+      "actions": [ { "type": "GAIN_PURPLE_WAX_SEAL", "cost": 0 }, {"type":"GAIN_COINS", "value":1} ]
     },
     {
       "tile_id": 8,
-      "requirements": {},
-      "actions": [ { "type": "ESTABLISH_ANY_CAMPSITE" } ]
+      "requirements": {"GREEN": 2, "BLUE": 2},
+      "actions": [ { "type": "ESTABLISH_CAMPSITE", "location": "ANY" } ]
     },
     {
       "tile_id": 9,
-      "requirements": {},
-      "actions": [ { "type": "PERFORM_LOCKED_ACTION" } ]
+      "requirements": {"RED": 2, "BLUE": 2},
+      "actions": [ { "type": "PERFORM_LOCKED_SLOT" } ]
     },
     {
       "tile_id": 10,
-      "requirements": {},
-      "actions": [ { "type": "MOVE_TO_BEAGLE" }, {"type": "GAIN_VP", "value": 1}]
+      "requirements": {"RED": 2, "GREEN": 2},
+      "actions": [ { "type": "EXPLORE", "value": 2 }, {"type": "NAVIGATE", "value": 2}]
     },
     {
       "tile_id": 11,
-      "requirements": {},
-      "actions": [ { "type": "COPY_CREW_CARD" } ]
+      "requirements": {"YELLOW": 1, "BLUE": 1},
+      "actions": [ { "type": "ADVANCE_THEORY", "value": 3 } ]
     },
     {
       "tile_id": 12,
-      "requirements": {},
-      "actions": [ { "type": "CORRESPONDENCE_DISTRIBUTED", "value": 4 } ]
+      "requirements": {"BLUE": 2, "GREEN": 2},
+      "actions": [ { "type": "UNLOCK_LENS", "cost": 0 } ]
     }
   ]

@@ -147,7 +147,7 @@
       "action_type": "ACADEMY",
       "placement_type": "CIRCULAR_MAGNIFYING_GLASS",
       "wax_seal_requirements": { "RED": 2 },
-      "base_actions": [ { "type": "ACADEMY" } , { "type": "ACADEMY", "cost_modifier": -1 } ],
+      "base_actions": [ { "type": "ACADEMY" } , { "type": "ACADEMY", "cost_delta": -1 } ],
       "distinction_bonuses": {
         "silver": [ { "type": "BONUS_ACADEMY_SEAL" } ],
         "golden": [ { "type": "BONUS_ACADEMY_DISCOUNT", "value": 1 } ]
@@ -161,7 +161,7 @@
       "action_type": "ACADEMY",
       "placement_type": "CIRCULAR_MAGNIFYING_GLASS",
       "wax_seal_requirements": { "RED": 3 },
-      "base_actions": [ { "type": "ACADEMY" }, { "type": "ACADEMY", "cost_modifier": -3 } ],
+      "base_actions": [ { "type": "ACADEMY" }, { "type": "ACADEMY", "cost_delta": -3 } ],
       "distinction_bonuses": {
         "silver": [ { "type": "BONUS_ACADEMY_SEAL" } ],
         "golden": [ { "type": "BONUS_ACADEMY_DISCOUNT", "value": 1 } ]

@@ -73,8 +73,8 @@ class ActionType(Enum):
     RESEARCH_ANY_SPECIMEN = auto()
 
     # Seal Related
-    GAIN_SEAL_ANY_FREE = auto()  # From Campsite IA14
-    GAIN_SEAL_SPECIAL = auto()  # From Special Action Tile 7
+    GAIN_SEAL = auto()
+    GAIN_PURPLE_WAX_SEAL = auto()
 
     # Movement/Placement
     PLACE_EXPLORER = auto()
@@ -84,12 +84,11 @@ class ActionType(Enum):
 
     # Special actions/Crew
     CHOICE = auto()  # Represents a choice between sub-actions
-    REPEAT_DELIVERY = auto()  # From Special Action Tile 3
     END_OF_ISLAND_BONUS = auto()  # From Island Track exit spaces
     COPY_CREW_CARD = auto()
-    PERFORM_LOCKED_ACTION = auto()
+    PERFORM_LOCKED_SLOT = auto()
     # Added from crew card actions
-    CORRESPONDENCE_DISTRIBUTED = auto()
+    # CORRESPONDENCE_DISTRIBUTED = auto()
     ESTABLISH_ANY_CAMPSITE = auto()
     # Placeholder for special tile locations
     PERFORM_SPECIAL_TILE_ACTION = auto()
@@ -118,12 +117,13 @@ class ObjectiveRequirementType(Enum):
     SHIP_AT_BEAGLE_OR_AHEAD = auto()
     HAVE_TEMP_KNOWLEDGE = auto()
     HAVE_VP = auto()
-    EMPTY_STAMP_STACKS = auto()
+    HAVE_EMPTY_STAMP_STACKS = auto()
     HAVE_LENS_TOKENS_PLACED = auto()
     HAVE_TENTS_PLACED = auto()
     HAVE_COINS = auto()
     THEORY_TRACK_AT_LEAST_AT_POSITION = auto()
     SHIP_AT_LEAST_AT_POSITION = auto()
+    SHIP_AT_LEAST_AT_BEAGLE = auto()
     # Removed types not directly observed:
     # REACHED_TRACK_SPACE, HAVE_COMPLETED_OBJECTIVES,
     # HAVE_PLACED_WORKERS, HAVE_ACADEMY_TOKENS

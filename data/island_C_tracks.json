@@ -1,7 +1,7 @@
 [
     {
       "id": "IC0",
-      "island_id": "C",
+      "island_id": "Island C",
       "actions": [],
       "has_specimen": false,
       "golden_ribbon_vp": null,
@@ -9,7 +9,7 @@
     },
     {
       "id": "IC1",
-      "island_id": "C",
+      "island_id": "Island C",
       "actions": [],
       "has_specimen": true,
       "golden_ribbon_vp": null,
@@ -17,7 +17,7 @@
     },
     {
       "id": "IC2",
-      "island_id": "C",
+      "island_id": "Island C",
       "actions": [
         { "type": "GAIN_VP", "value": 3 },
         { "type": "GAIN_TEMP_KNOWLEDGE", "value": 1 }
@@ -28,9 +28,9 @@
     },
     {
       "id": "IC3",
-      "island_id": "C",
+      "island_id": "Island C",
       "actions": [
-        { "type": "CAMP" }
+        { "type": "ESTABLISH_CAMPSITE", "location": "CAMP_AREA_IC3" }
       ],
       "has_specimen": false,
       "golden_ribbon_vp": null,
@@ -38,7 +38,7 @@
     },
     {
       "id": "IC4",
-      "island_id": "C",
+      "island_id": "Island C",
       "actions": [
         { "type": "CORRESPONDENCE", "value": 2 },
         { "type": "GAIN_VP", "value": 3 }
@@ -49,7 +49,7 @@
     },
     {
       "id": "IC5",
-      "island_id": "C",
+      "island_id": "Island C",
       "actions": [],
       "has_specimen": true,
       "golden_ribbon_vp": null,
@@ -57,7 +57,7 @@
     },
     {
       "id": "IC6",
-      "island_id": "C",
+      "island_id": "Island C",
       "actions": [
         { "type": "GAIN_VP", "value": 5 },
         { "type": "GAIN_OBJECTIVE" }
@@ -68,7 +68,7 @@
     },
     {
       "id": "IC7",
-      "island_id": "C",
+      "island_id": "Island C",
       "actions": [
         { "type": "GAIN_VP", "value": 3 },
         { "type": "ADVANCE_THEORY", "value": 2 }
@@ -79,7 +79,7 @@
     },
     {
       "id": "IC8",
-      "island_id": "C",
+      "island_id": "Island C",
       "actions": [
         { "type": "GAIN_VP", "value": 6 }
       ],
@@ -89,7 +89,7 @@
     },
     {
       "id": "IC9",
-      "island_id": "C",
+      "island_id": "Island C",
       "actions": [
         { "type": "GAIN_VP", "value": 8 }
       ],
@@ -99,7 +99,7 @@
     },
     {
       "id": "IC10",
-      "island_id": "C",
+      "island_id": "Island C",
       "actions": [
         { "type": "GAIN_VP", "value": 8 },
         { "type": "END_OF_ISLAND_BONUS", "value": 3 }

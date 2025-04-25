@@ -4,23 +4,23 @@
     "components": [
       {
         "component_type": "DECK_SLOT",
-        "objective_type": "silver",
+        "objective_type": "SILVER",
         "description": "Location for the face-down Silver Objective tile deck."
       },
       {
         "component_type": "DECK_SLOT",
-        "objective_type": "gold",
+        "objective_type": "GOLD",
         "description": "Location for the face-down Golden Objective tile deck."
       },
       {
         "component_type": "DISPLAY_SLOT",
-        "objective_type": "silver",
+        "objective_type": "SILVER",
         "count": 2,
         "description": "Two slots displaying face-up Silver Objective tiles available to take."
       },
       {
         "component_type": "DISPLAY_SLOT",
-        "objective_type": "gold",
+        "objective_type": "GOLD",
         "count": 2,
         "description": "Two slots displaying face-up Golden Objective tiles available to take."
       }

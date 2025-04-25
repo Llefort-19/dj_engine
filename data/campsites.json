@@ -71,7 +71,7 @@
         { "slot_index": 1, "placement_cost": 2 }
       ],
       "actions_on_placement": [
-        { "type": "GAIN_SEAL_ANY_FREE" }
+        { "type": "GAIN_SEAL", "color": "ANY", "cost": 0 }
       ]
     },
     {

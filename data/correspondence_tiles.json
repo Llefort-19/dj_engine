@@ -48,10 +48,10 @@
     {
       "tile_id": 6,
       "first_place_rewards": [
-        { "type": "ACADEMY", "cost_modifier": -2 }
+        { "type": "ACADEMY", "cost_delta": -2 }
       ],
       "second_place_rewards": [
-        { "type": "ACADEMY" }
+        { "type": "ACADEMY", "cost_delta": 0 }
       ]
     },
     {

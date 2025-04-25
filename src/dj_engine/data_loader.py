@@ -25,9 +25,15 @@ class SimpleActionInfo:
     """Represents a simple action definition, often used in rewards/bonuses."""
 
     type: ActionType | str
-    # Updated to allow list for CHOICE options
-    value: int | str | list[dict[str, Any]] | None = None
-    choice_source: str | None = None  # Added for special action tile 5
+    # Core value (e.g., amount, VP, count). Use specific fields below for other details.
+    value: int | list[dict[str, Any]] | None = None  # Keep list for CHOICE options
+    choice_source: str | None = None
+    # New optional fields for richer action descriptions
+    cost: int | None = None
+    location: str | None = None  # e.g., CAMPSITE_ID, "ANY", "START_OF_NEW_ISLAND"
+    distributed: bool | None = None  # For CORRESPONDENCE
+    repeat: bool | None = None  # For DELIVER_SPECIMEN
+    color: SealColor | str | None = None  # For GAIN_SEAL, allows "ANY"
 
 
 @dataclass
@@ -273,7 +279,7 @@ class Species:
     museum_row: str
     museum_col: int
     kind: SpecimenKind
-    colour: SealColor
+    color: SealColor
 
 
 @dataclass
@@ -368,36 +374,28 @@ def _parse_track_spaces(raw_data: Any, track_name: str) -> dict[str, TrackSpace]
 def _parse_action(
     action_dict: dict[str, Any] | None, context: str
 ) -> SimpleActionInfo | None:
-    """Helper function to parse an action dictionary, converting type to Enum."""
-    # Handle None input gracefully (e.g., missing optional 'reward_action')
+    """Helper function to parse an action dictionary, handling various keys."""
+    # Handle None input gracefully
     if action_dict is None:
         return None
 
-    if not isinstance(action_dict, dict):
-        # Allow empty dicts like in tent_slot 0, treat as None
-        if isinstance(action_dict, dict) and not action_dict:
-            return None
-        logger.warning(f"Invalid action dict (not a dict) in {context}: {action_dict}")
-        return None
-
-    # Check for empty dict after type check
-    if not action_dict:
+    if not isinstance(action_dict, dict) or not action_dict:
+        # Allow empty dicts, treat as None
         return None
 
     try:
-        value_data: int | str | list[dict[str, Any]] | None = None
         action_type_str = action_dict["type"]
-        action_type_val: ActionType | str  # Type hint for the final value
+        action_type_val: ActionType | str
+        # parsed_info = SimpleActionInfo(type=None)  # Removed initialization here
 
-        # Check for specific string types first
+        # --- Determine Action Type ---
         if action_type_str == "SPECIAL":
             action_type_val = ActionType.PERFORM_SPECIAL_TILE_ACTION
         elif action_type_str.startswith("OBJECTIVE_"):
-            action_type_val = action_type_str
+            action_type_val = action_type_str  # Keep as string
         else:
-            # Otherwise, try to convert to ActionType Enum
             try:
-                action_type_val = ActionType[action_type_str]
+                action_type_val = ActionType[action_type_str]  # Convert to Enum
             except KeyError:
                 logger.error(
                     f"Invalid action type string '{action_type_str}' "
@@ -405,25 +403,86 @@ def _parse_action(
                 )
                 return None
 
-        # Handle value based on type (only needed for CHOICE Enum)
+        # --- Initialize SimpleActionInfo --- Now that type is known
+        parsed_info = SimpleActionInfo(type=action_type_val)
+
+        # --- Populate Fields Based on Keys ---
+
+        # 1. Cost (Standardize cost/cost_modifier/cost_delta -> cost field)
+        if "cost" in action_dict:
+            parsed_info.cost = action_dict.get("cost")
+        elif "cost_modifier" in action_dict:
+            cost_mod = action_dict.get("cost_modifier")
+            parsed_info.cost = 0 if cost_mod == "FREE" else cost_mod
+        elif "cost_delta" in action_dict:  # Added check for cost_delta
+            parsed_info.cost = action_dict.get("cost_delta")
+
+        # 2. Value (Primary numeric value or CHOICE options)
         if (
             isinstance(action_type_val, ActionType)
             and action_type_val == ActionType.CHOICE
         ):
-            value_data = action_dict.get("options")
-        else:
-            value_data = action_dict.get("value", action_dict.get("cost_modifier"))
+            parsed_info.value = action_dict.get("options")
+        elif "value" in action_dict:
+            # ACADEMY cost sometimes stored as negative value (handled by cost logic)
+            # Only assign value if it's not implicitly a cost
+            if not (
+                isinstance(action_type_val, ActionType)
+                and action_type_val == ActionType.ACADEMY
+                and isinstance(parsed_info.cost, int)
+            ):
+                parsed_info.value = action_dict.get("value")
 
-        # Ignore value for PERFORM_SPECIAL_TILE_ACTION as it's just a placeholder
+        # 3. Location (ESTABLISH_CAMPSITE, PLACE_EXPLORER)
+        if isinstance(action_type_val, ActionType) and action_type_val in [
+            ActionType.ESTABLISH_CAMPSITE,
+            ActionType.PLACE_EXPLORER,
+        ]:
+            parsed_info.location = action_dict.get("location")
+
+        # 4. Distributed (CORRESPONDENCE)
+        if (
+            isinstance(action_type_val, ActionType)
+            and action_type_val == ActionType.CORRESPONDENCE
+        ):
+            parsed_info.distributed = action_dict.get("distributed")
+
+        # 5. Repeat (DELIVER_SPECIMEN)
+        if (
+            isinstance(action_type_val, ActionType)
+            and action_type_val == ActionType.DELIVER_SPECIMEN
+        ):
+            parsed_info.repeat = action_dict.get("repeat")
+
+        # 6. Color (GAIN_SEAL)
+        if (
+            isinstance(action_type_val, ActionType)
+            and action_type_val == ActionType.GAIN_SEAL
+        ):
+            color_data = action_dict.get("color")
+            if color_data == "ANY":
+                parsed_info.color = "ANY"
+            elif color_data:
+                try:
+                    parsed_info.color = SealColor[color_data]
+                except KeyError:
+                    logger.warning(
+                        f"Invalid seal color '{color_data}' for GAIN_SEAL in {context}"
+                    )
+            # Cost for GAIN_SEAL is handled by generic cost logic (step 1)
+
+        # 7. Choice Source (Specific CHOICE actions)
+        parsed_info.choice_source = action_dict.get("choice_source")
+
+        # 8. Cleanup for Special Placeholder
         if action_type_val == ActionType.PERFORM_SPECIAL_TILE_ACTION:
-            value_data = None
+            parsed_info.value = None
+            parsed_info.cost = None
 
-        # Ignoring timing for now - logic needs to handle it
-        return SimpleActionInfo(
-            type=action_type_val,
-            value=value_data,
-            choice_source=action_dict.get("choice_source"),
-        )
+        # --- End Population ---
+
+        return parsed_info
+
     except KeyError as e:
         logger.error(f"Missing key {e} in action for {context}: {action_dict}")
         return None
@@ -611,11 +670,15 @@ def load_campsites() -> dict[str, Campsite]:
 
 def load_correspondences_tiles() -> dict[int, CorrespondenceTile]:
     """Loads correspondence tile definitions."""
-    raw_data = _load_json("correspondances_tiles.json")  # Note spelling
+    raw_data = _load_json("correspondence_tiles.json")  # Corrected spelling
     tile_data: dict[int, CorrespondenceTile] = {}
     if not isinstance(raw_data, list):
-        logger.error("correspondances_tiles.json top level is not a list")
-        raise TypeError("Expected list in correspondances_tiles.json")
+        logger.error(
+            "correspondence_tiles.json top level is not a list"
+        )  # Corrected filename in log
+        raise TypeError(
+            "Expected list in correspondence_tiles.json"
+        )  # Corrected filename in error
 
     def _parse_rewards(
         reward_list_raw: Any, tile_id: int, place: str
@@ -644,7 +707,7 @@ def load_correspondences_tiles() -> dict[int, CorrespondenceTile]:
     for item in raw_data:
         if not isinstance(item, dict):
             logger.warning(
-                f"Skipping non-dict item in correspondances_tiles.json: {item}"
+                f"Skipping non-dict item in correspondence_tiles.json: {item}"
             )
             continue
         try:
@@ -667,9 +730,7 @@ def load_correspondences_tiles() -> dict[int, CorrespondenceTile]:
         except Exception as e:
             logger.error(f"Error parsing correspondence tile item {item}: {e}")
 
-    logger.info(
-        f"Parsed {len(tile_data)} correspondence tiles from correspondances_tiles.json."
-    )
+    logger.info(f"Parsed {len(tile_data)} tiles from correspondence_tiles.json.")
     return tile_data
 
 
@@ -1232,27 +1293,10 @@ def load_special_action_tiles() -> dict[int, SpecialActionTile]:
             parsed_actions: list[SimpleActionInfo] = []
             if isinstance(raw_actions, list):
                 for act_item in raw_actions:
-                    if isinstance(act_item, dict):
-                        # Handle CHOICE type specifically
-                        value_data: int | str | list[dict[str, Any]] | None = None
-                        if act_item.get("type") == "CHOICE":
-                            value_data = act_item.get("options")
-                        else:
-                            value_data = act_item.get(
-                                "value", act_item.get("cost_modifier")
-                            )
-
-                        action_info = SimpleActionInfo(
-                            type=act_item["type"],
-                            value=value_data,
-                            choice_source=act_item.get("choice_source"),
-                        )
+                    # Use the central _parse_action helper
+                    action_info = _parse_action(act_item, f"special tile {tile_id}")
+                    if action_info:
                         parsed_actions.append(action_info)
-                    else:
-                        logger.warning(
-                            f"Skipping non-dict action in special tile "
-                            f"{tile_id}: {act_item}"
-                        )
             else:
                 logger.warning(
                     f"'actions' is not a list in special tile {tile_id}: {raw_actions}"
@@ -1285,7 +1329,7 @@ def load_species() -> dict[str, Species]:
         try:
             token_id = item["token_id"]
             kind_str = item["kind"]
-            colour_str = item["colour"]
+            color_str = item["color"]
 
             try:
                 kind_enum = SpecimenKind[kind_str]
@@ -1297,12 +1341,12 @@ def load_species() -> dict[str, Species]:
                 continue  # Skip this species
 
             try:
-                # Assuming colour in JSON maps directly to SealColor enum names
+                # Assuming color in JSON maps directly to SealColor enum names
                 # (e.g., "BLUE", "GREEN", etc.)
-                colour_enum = SealColor[colour_str]
+                color_enum = SealColor[color_str]
             except KeyError:
                 logger.error(
-                    f"Invalid species colour string '{colour_str}' "
+                    f"Invalid species color string '{color_str}' "
                     f"for species {token_id}: {item}"
                 )
                 continue  # Skip this species
@@ -1312,7 +1356,7 @@ def load_species() -> dict[str, Species]:
                 museum_row=item["museum_row"],
                 museum_col=item["museum_col"],
                 kind=kind_enum,
-                colour=colour_enum,
+                color=color_enum,
             )
             species_data[token_id] = species
         except KeyError as e:

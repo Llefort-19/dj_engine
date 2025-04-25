@@ -31,14 +31,14 @@
       "starting_seal_color": "BLUE",
       "activation_requirement": { "BLUE": 4, "YELLOW": 1 },
       "_comment": "The standard Unlock Lens action costs coins based on the target location; this bypasses that.",
-      "achieved_actions": [ { "type": "UNLOCK_LENS", "cost_modifier": "FREE" } ]
+      "achieved_actions": [ { "type": "UNLOCK_LENS", "cost": 0 } ]
     },
     {
       "card_id": 6,
       "starting_seal_color": "YELLOW",
       "activation_requirement": { "YELLOW": 4, "BLUE": 1 },
       "_comment": "Distributed Correspondence",
-      "achieved_actions": [ { "type": "CORRESPONDENCE_DISTRIBUTED", "value": 4 } ]
+      "achieved_actions": [ { "type": "CORRESPONDENCE", "value": 4, "distributed": true } ]
     },
     {
       "card_id": 7,
@@ -59,14 +59,14 @@
       "starting_seal_color": "RED",
       "activation_requirement": { "RED": 3, "YELLOW": 2 },
       "_comment": "Perform Locked Action",
-      "achieved_actions": [ { "type": "PERFORM_LOCKED_ACTION" } ]
+      "achieved_actions": [ { "type": "PERFORM_LOCKED_SLOT" } ]
     },
      {
       "card_id": 10,
       "starting_seal_color": "YELLOW",
       "activation_requirement": { "YELLOW": 3, "GREEN": 2 },
       "_comment": "Establish Any Campsite",
-      "achieved_actions": [ { "type": "ESTABLISH_ANY_CAMPSITE" } ]
+      "achieved_actions": [ { "type": "ESTABLISH_ANY_CAMPSITE", "location": "ANY"	 } ]
     },
   
     {
@@ -74,7 +74,7 @@
       "starting_seal_color": "RED",
       "activation_requirement": { "GREEN": 1, "RED": 4 },
       "_comment": "Corresponds to 'Gain Special Wax Seal (purple)' from p18, but explicitly free",
-      "achieved_actions": [ { "type": "GAIN_SEAL_SPECIAL", "cost_modifier": "FREE" } ]
+      "achieved_actions": [ { "type": "GAIN_PURPLE_WAX_SEAL", "cost": 0 } ]
     },
     {
       "card_id": 12,

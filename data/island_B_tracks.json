@@ -1,7 +1,7 @@
 [
     {
       "id": "IB0",
-      "island_id": "B",
+      "island_id": "Island B",
       "actions": [],
       "has_specimen": false,
       "golden_ribbon_vp": null,
@@ -9,7 +9,7 @@
     },
     {
       "id": "IB1",
-      "island_id": "B",
+      "island_id": "Island B",
       "actions": [
         { "type": "GAIN_COINS", "value": 5 }
       ],
@@ -19,7 +19,7 @@
     },
     {
       "id": "IB2",
-      "island_id": "B",
+      "island_id": "Island B",
       "actions": [],
       "has_specimen": true,
       "golden_ribbon_vp": 2,
@@ -27,7 +27,7 @@
     },
     {
       "id": "IB3",
-      "island_id": "B",
+      "island_id": "Island B",
       "actions": [
         { "type": "GAIN_OBJECTIVE" },
         { "type": "GAIN_VP", "value": 4 }
@@ -38,9 +38,9 @@
     },
     {
       "id": "IB4",
-      "island_id": "B",
+      "island_id": "Island B",
       "actions": [
-        { "type": "CAMP" }
+        { "type": "ESTABLISH_CAMPSITE", "location": "CAMP_AREA_IB4" }
       ],
       "has_specimen": false,
       "golden_ribbon_vp": null,
@@ -48,7 +48,7 @@
     },
     {
       "id": "IB5",
-      "island_id": "B",
+      "island_id": "Island B",
       "actions": [
         { "type": "GAIN_COINS", "value": 2 },
         { "type": "GAIN_TEMP_KNOWLEDGE", "value": 1 }
@@ -59,7 +59,7 @@
     },
     {
       "id": "IB6",
-      "island_id": "B",
+      "island_id": "Island B",
       "actions": [],
       "has_specimen": true,
       "golden_ribbon_vp": 3,
@@ -67,7 +67,7 @@
     },
     {
       "id": "IB7",
-      "island_id": "B",
+      "island_id": "Island B",
       "actions": [
         { "type": "GAIN_COINS", "value": 4 }
       ],
@@ -77,7 +77,7 @@
     },
     {
       "id": "IB8",
-      "island_id": "B",
+      "island_id": "Island B",
       "actions": [
         { "type": "GAIN_COINS", "value": 3 },
         { "type": "GAIN_OBJECTIVE" }
@@ -88,9 +88,9 @@
     },
     {
       "id": "IB9",
-      "island_id": "B",
+      "island_id": "Island B",
       "actions": [
-        { "type": "CAMP" }
+        { "type": "ESTABLISH_CAMPSITE", "location": "CAMP_AREA_IB9" }
       ],
       "has_specimen": false,
       "golden_ribbon_vp": null,
@@ -98,7 +98,7 @@
     },
     {
       "id": "IB10",
-      "island_id": "B",
+      "island_id": "Island B",
       "actions": [
         { "type": "GAIN_SEAL_ANY_FREE" }
       ],
@@ -108,7 +108,7 @@
     },
     {
       "id": "IB11",
-      "island_id": "B",
+      "island_id": "Island B",
       "actions": [],
       "has_specimen": true,
       "golden_ribbon_vp": 4,
@@ -116,7 +116,7 @@
     },
     {
       "id": "IB12",
-      "island_id": "B",
+      "island_id": "Island B",
       "actions": [
         { "type": "ADVANCE_THEORY", "value": 3 }
       ],
@@ -126,7 +126,7 @@
     },
     {
       "id": "IB13",
-      "island_id": "B",
+      "island_id": "Island B",
       "actions": [
         { "type": "GAIN_VP", "value": 6 }
       ],
@@ -136,7 +136,7 @@
     },
     {
       "id": "IB14",
-      "island_id": "B",
+      "island_id": "Island B",
       "actions": [
         { "type": "GAIN_VP", "value": 5 },
         { "type": "END_OF_ISLAND_BONUS", "value": 3 }
